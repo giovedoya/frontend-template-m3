@@ -5,7 +5,8 @@ import authService from '../../services/authService';
 export default function Signup() {
   const [user, setUser] = useState({
     username: '',
-    email: ''
+    email: '',
+    location: ''
   })
   const [password, setPassword] = useState('');
   const [passwordControl, setPasswordControl] = useState('');
@@ -31,8 +32,12 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user.location || user.location.length < 3) {
+      setErrorMessage('Please provide a valid location');
+      return;
+    }
     try {
-      await authService.signup({ username: user.username, email: user.email, password });
+      await authService.signup({ username: user.username, email: user.email, location: user.location, password });
       navigate('/login');
     } catch (error) {
       console.error(error)
@@ -47,6 +52,8 @@ export default function Signup() {
         <input required type="text" name="username" value={user.username} onChange={handleChange} />
         <label>Email</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
+        <label>Location</label>
+        <input required type="text" name="location" value={user.location} onChange={handleChange} />
         <label>Password</label>
         <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
         <label>Repeat the password</label>
