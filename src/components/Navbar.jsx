@@ -10,11 +10,14 @@ export default function Navbar() {
       {user && <p>Hello {user.username}</p> }
       <ul>
         <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/post">Post</NavLink></li>
         {!isLoggedIn && <li><NavLink to="/signup">Sign up</NavLink></li>}
         {!isLoggedIn && <li><NavLink to="/login">Login</NavLink></li>}
+        {}
         {isLoggedIn && <li><NavLink to="/private">Private view</NavLink></li>}
         {isLoggedIn && <li><button onClick={() => logOutUser()}>Log out</button></li>}
         <li><button onClick={() => navigate(-1)}>Go back</button></li>
+       
       </ul>
     </div>
   )
