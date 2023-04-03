@@ -11,6 +11,7 @@ import PrivateView from './views/PrivateView';
 import IsPrivate from './components/IsPrivate';
 import Post from './views/Post'
 import DressDetail from './components/DressDetail';
+import EditDress from './views/EditDress';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<Post />} />
         <Route path="/dress/:dressId" element={<DressDetail />} />
+        <Route path="/edit/:dressId" element={<EditDress />}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
