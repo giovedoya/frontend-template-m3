@@ -22,7 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<Post />} />
         <Route path="/dress/:dressId" element={<DressDetail />} />
-        <Route path="/edit/:dressId" element={<EditDress />}  />
+        <Route path="/dress/:dressId/edit" element={<EditDress />}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />

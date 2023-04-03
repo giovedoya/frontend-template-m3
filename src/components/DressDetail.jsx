@@ -47,7 +47,7 @@ export default function DressDetail() {
           <p>{dress.description}</p>
           <div>
             <button>
-              <Link to={`/edit/${dress._id}`}>Edit dress</Link>
+              <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
             </button>
             <button type="button" onClick={() => handleDelete(dress._id)}>
               Delete dress

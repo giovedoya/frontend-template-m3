@@ -1,47 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import dressService from "../services/dressService";
 
-export default function EditDress() {
-  const { dressId } = useParams();
+export default function NewDress() {
+    const initialState = {
+        neckline: "",
+        court: "",
+        long: "",
+        color: "",
+        size: "",
+        designer: "",
+        name: "",
+        description: "",
+        price: "",
+        location: "",
+        image: "",
+        sold: "",
+    };
+    const [ newDress, setNewDress] = useState(initialState);
+    const [ error, setError] = useState("");
+    const navigate = useNavigate();
 
-  const [dress, setDress] = useState({});
-  const [error, setError] = useState(false);
-  const navigate = useNavigate();
-
-  const getDress = async () => {
-    try {
-      const response = await dressService.getDress(dressId);
-      setDress(response);
-      setError(false);
-    } catch (error) {
-      console.error(error);
-      setError(true);
-    }
-  };
-  useEffect(() => {
-    getDress();
-    // eslint-disable-next-line
-  }, [dressId]);
-
-  const handleChange = (e) => {
-    setDress((prev) => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value,
+    const handleChange = (e) => {
+        setNewDress((prev) => {
+          return {
+            ...prev,
+            [e.target.name]: e.target.value,
+          };
+        });
       };
-    });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await dressService.editDress(dressId, dress);
-      navigate(`/dress/${dressId}`);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const dressNew = await dressService.createDress(newDress);
+          setError("");
+          navigate(`/dress/${dressNew._id}`);
+          setNewDress(initialState);
+        } catch (err) {
+          console.error(err);
+          setError(err);
+        }
+      };
+
+
+
+
 
   return (
     <div>
@@ -54,7 +58,7 @@ export default function EditDress() {
         <input
           type="text"
           name="name"
-          value={dress.name}
+          value={newDress.name}
           onChange={handleChange}
           required
         />
@@ -62,7 +66,7 @@ export default function EditDress() {
         <select
           type="text"
           name="neckline"
-          value={dress.neckline}
+          value={newDress.neckline}
           onChange={handleChange}
         >         
           <option value="ship">Ship</option>
@@ -82,7 +86,7 @@ export default function EditDress() {
         <select
           type="text"
           name="court"
-          value={dress.court}
+          value={newDress.court}
           onChange={handleChange}
         >        
           <option value="princess">Princess</option>
@@ -97,7 +101,7 @@ export default function EditDress() {
         <select
           type="text"
           name="long"
-          value={dress.long}
+          value={newDress.long}
           onChange={handleChange}
         >         
           <option value="ship">Long</option>
@@ -108,7 +112,7 @@ export default function EditDress() {
         <select
           type="text"
           name="color"
-          value={dress.color}
+          value={newDress.color}
           onChange={handleChange}
         >          
           <option value="princess">Black</option>
@@ -130,7 +134,7 @@ export default function EditDress() {
       <select
         type="number"
         name="size"
-        value={dress.size}
+        value={newDress.size}
         onChange={handleChange}
       >        
         <option value="32">32</option>
@@ -154,7 +158,7 @@ export default function EditDress() {
         <input
           type="text"
           name="designer"
-          value={dress.designer}
+          value={newDress.designer}
           onChange={handleChange}
           required
         />
@@ -162,7 +166,7 @@ export default function EditDress() {
         <input
           type="number"
           name="price"
-          value={dress.price}
+          value={newDress.price}
           onChange={handleChange}
           required
         />
@@ -170,7 +174,7 @@ export default function EditDress() {
         <input
           type="text"
           name="location"
-          value={dress.location}
+          value={newDress.location}
           onChange={handleChange}
           required
         />
@@ -178,7 +182,7 @@ export default function EditDress() {
         <input
           type="text"
           name="image"
-          value={dress.image}
+          value={newDress.image}
           onChange={handleChange}
           required
         />
@@ -186,7 +190,7 @@ export default function EditDress() {
         <input
           type="text"
           name="description"
-          value={dress.description}
+          value={newDress.description}
           onChange={handleChange}
           required
         />
@@ -195,5 +199,5 @@ export default function EditDress() {
         </button>
       </form>
     </div>
-  );
+  )
 }
