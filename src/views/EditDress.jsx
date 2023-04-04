@@ -5,17 +5,19 @@ import dressService from "../services/dressService";
 export default function EditDress() {
   const { dressId } = useParams();
   const [dress, setDress] = useState({
-    neckline: "",
-    court: "",
-    long: "",
-    color: "",
-    size: "",
-    designer: "",
-    name: "",
-    description: "",
-    price: "",
-    image: "",
+    neckline: '',
+    court: '',
+    long: '',
+    color: '',
+    size: 32,
+    designer: '',
+    name: '',
+    description: '',
+    price: 500,
+    location: '',
+    image: '',
     wasSold: false,
+    type: 'no',
   });
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -30,11 +32,11 @@ export default function EditDress() {
       setError(true);
     }
   };
-  console.log(dress)
+
   useEffect(() => {
     getDress();
     // eslint-disable-next-line
-  }, [dressId]);
+  }, []);
 
   const handleChange = (e) => {
     setDress((prev) => {
@@ -44,7 +46,7 @@ export default function EditDress() {
       };
     });
   };
-
+  
   const handleSold = (e) => {
     setDress(prev => {
       return {
@@ -56,14 +58,30 @@ export default function EditDress() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await dressService.editDress(dressId, dress);
+    console.log("handle submit");
+    try {    
+      const updatedDress = {
+        neckline: dress.neckline,
+        court: dress.court,
+        long: dress.long,
+        color: dress.color,
+        size: dress.size,
+        designer: dress.designer,
+        name: dress.name,
+        description: dress.description,
+        price: dress.price,
+        location: dress.location,
+        image: dress.image,
+        wasSold: dress.wasSold,
+        type: dress.type
+      };
+      await dressService.editDress(dressId, updatedDress);
       navigate(`/dress/${dressId}`);
     } catch (error) {
       console.error(error);
     }
-    console.log(handleSubmit)
   };
+   
 
   return (
     <div>
@@ -212,8 +230,14 @@ export default function EditDress() {
           onChange={handleChange}
           required
         />
-        <label>Sold</label>
-        <input type="checkbox" name="sold" checked={dress.wasSold} onChange={handleSold} />
+        <div>
+        <label>Has been sold</label>
+        <input type="checkbox" name="wasSold" checked={dress.wasSold} onChange={handleSold} />
+        </div>        
+        <select name="type" value={dress.type} onChange={handleChange}>
+          <option value="no">no</option>
+          <option value="yes">yes</option>
+        </select>
         <button type="submit">
           Save changes
         </button>

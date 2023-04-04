@@ -5,6 +5,14 @@ class DressService {
     this.api = axios.create({
       baseURL: `${process.env.REACT_APP_BACKEND_URL}/dress`,
     });
+
+    this.api.interceptors.request.use(config => {
+      const storedToken = localStorage.getItem('authToken');
+      if (storedToken) {
+        config.headers = { Authorization: `Bearer ${storedToken}` };
+      }
+      return config;
+    });
   }
 
   getDresses() {
@@ -20,6 +28,7 @@ class DressService {
   }
 
   editDress(id, body) {
+    console.log("edit dress", id, body)
     return this.api.put(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
