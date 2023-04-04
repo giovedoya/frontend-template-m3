@@ -43,7 +43,7 @@ export default function DressDetail() {
         <>
           <h3>{dress.name}</h3>
           <p>{dress.designer}</p>
-          <img src={dress.image} alt={dress.title} />
+          <img style={{ width: "300px" }} src={dress.image} alt={dress.title} />
           <p>{dress.description}</p>
           <div>
             <button>

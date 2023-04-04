@@ -4,8 +4,19 @@ import dressService from "../services/dressService";
 
 export default function EditDress() {
   const { dressId } = useParams();
-
-  const [dress, setDress] = useState({});
+  const [dress, setDress] = useState({
+    neckline: "",
+    court: "",
+    long: "",
+    color: "",
+    size: "",
+    designer: "",
+    name: "",
+    description: "",
+    price: "",
+    image: "",
+    wasSold: false,
+  });
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
@@ -19,6 +30,7 @@ export default function EditDress() {
       setError(true);
     }
   };
+  console.log(dress)
   useEffect(() => {
     getDress();
     // eslint-disable-next-line
@@ -33,6 +45,15 @@ export default function EditDress() {
     });
   };
 
+  const handleSold = (e) => {
+    setDress(prev => {
+      return {
+        ...prev,
+        wasSold: e.target.checked
+      }
+    })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -41,6 +62,7 @@ export default function EditDress() {
     } catch (error) {
       console.error(error);
     }
+    console.log(handleSubmit)
   };
 
   return (
@@ -100,9 +122,9 @@ export default function EditDress() {
           value={dress.long}
           onChange={handleChange}
         >         
-          <option value="ship">Long</option>
-          <option value="v-shaped">Half</option>
-          <option value="square">Short</option>          
+          <option value="long">Long</option>
+          <option value="half">Half</option>
+          <option value="short">Short</option>          
         </select>
         <label>Color:</label>
         <select
@@ -111,19 +133,19 @@ export default function EditDress() {
           value={dress.color}
           onChange={handleChange}
         >          
-          <option value="princess">Black</option>
-          <option value="straight">Light Blue</option>
-          <option value="evaded">Brown</option>
-          <option value="in A">Golden</option>
-          <option value="siren">Grey</option>
-          <option value="empire">Green</option>
-          <option value="others">Ivory</option>
-          <option value="others">Multicolored</option>
-          <option value="others">Pink</option>
-          <option value="others">Red</option>
-          <option value="others">Silver</option>
-          <option value="others">White</option>
-          <option value="others">Dark blue</option>
+          <option value="black">Black</option>
+          <option value="light blue">Light Blue</option>
+          <option value="brown">Brown</option>
+          <option value="golden">Golden</option>
+          <option value="grey">Grey</option>
+          <option value="green">Green</option>
+          <option value="ivory">Ivory</option>
+          <option value="multicolored">Multicolored</option>
+          <option value="pink">Pink</option>
+          <option value="red">Red</option>
+          <option value="silver">Silver</option>
+          <option value="white">White</option>
+          <option value="dark blue">Dark blue</option>
           <option value="others">Others</option>
         </select>
         <label>Size:</label>
@@ -190,6 +212,8 @@ export default function EditDress() {
           onChange={handleChange}
           required
         />
+        <label>Sold</label>
+        <input type="checkbox" name="sold" checked={dress.wasSold} onChange={handleSold} />
         <button type="submit">
           Save changes
         </button>
