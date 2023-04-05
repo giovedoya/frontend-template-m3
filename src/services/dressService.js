@@ -28,8 +28,7 @@ class DressService {
   }
 
   editDress(id, body) {
-    console.log("edit dress", id, body)
-    return this.api.put(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
+    return this.api.put(`/${id}/`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
   createDress(body) {

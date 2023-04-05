@@ -4,34 +4,52 @@ import dressService from "../services/dressService";
 
 export default function EditDress() {
   const { dressId } = useParams();
-  const [dress, setDress] = useState({
-    neckline: '',
-    court: '',
-    long: '',
-    color: '',
-    size: 32,
-    designer: '',
-    name: '',
-    description: '',
-    price: 500,
-    location: '',
-    image: '',
-    wasSold: false,
-    type: 'no',
-  });
+  const [dress, setDress] = useState({ });
+
+
+
+  
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  // const getDress = async () => {
+  //   try {
+  //     const response = await dressService.getDress(dressId);
+  //     setDress(response);
+  //     setError(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setError(true);
+  //   }
+  // };
+
 
   const getDress = async () => {
     try {
       const response = await dressService.getDress(dressId);
-      setDress(response);
+      setDress({
+        ...response,
+        name: response.name || '',
+        neckline: response.neckline || '',
+        court: response.court || '',
+        long: response.long || '',
+        color: response.color || '',
+        size: response.size || '',
+        designer: response.designer || '',
+        description: response.description || '',
+        price: response.price || '',
+        location: response.location || '',
+        image: response.image || '',
+      });
       setError(false);
     } catch (error) {
       console.error(error);
       setError(true);
     }
   };
+  
+
+
 
   useEffect(() => {
     getDress();
@@ -47,18 +65,17 @@ export default function EditDress() {
     });
   };
   
-  const handleSold = (e) => {
-    setDress(prev => {
-      return {
-        ...prev,
-        wasSold: e.target.checked
-      }
-    })
-  }
+  // const handleSold = (e) => {
+  //   setDress(prev => {
+  //     return {
+  //       ...prev,
+  //       sold: e.target.checked
+  //     }
+  //   })
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handle submit");
     try {    
       const updatedDress = {
         neckline: dress.neckline,
@@ -72,8 +89,6 @@ export default function EditDress() {
         price: dress.price,
         location: dress.location,
         image: dress.image,
-        wasSold: dress.wasSold,
-        type: dress.type
       };
       await dressService.editDress(dressId, updatedDress);
       navigate(`/dress/${dressId}`);
@@ -230,14 +245,6 @@ export default function EditDress() {
           onChange={handleChange}
           required
         />
-        <div>
-        <label>Has been sold</label>
-        <input type="checkbox" name="wasSold" checked={dress.wasSold} onChange={handleSold} />
-        </div>        
-        <select name="type" value={dress.type} onChange={handleChange}>
-          <option value="no">no</option>
-          <option value="yes">yes</option>
-        </select>
         <button type="submit">
           Save changes
         </button>

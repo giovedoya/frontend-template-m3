@@ -26,7 +26,7 @@ export default function DressDetail() {
 
   const handleDelete = async (dressId) => {
     try {
-      const deletedDress = await dressService.deletedDress(dressId);
+      const deletedDress = await dressService.deleteDress(dressId);
       setDress(deletedDress);
       navigate("/");
     } catch (error) {
