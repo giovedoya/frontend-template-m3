@@ -8,15 +8,16 @@ export default function NewDress() {
         court: "",
         long: "",
         color: "",
-        size: "",
+        size: 32,
         designer: "",
         name: "",
         description: "",
-        price: "",
+        price: 500,
         location: "",
         image: "",
-        sold: "",
+
     };
+   
     const [ newDress, setNewDress] = useState(initialState);
     const [ error, setError] = useState("");
     const navigate = useNavigate();
@@ -34,18 +35,18 @@ export default function NewDress() {
         e.preventDefault();
         try {
           const dressNew = await dressService.createDress(newDress);
-          setError("");
-          navigate(`/dress/${dressNew._id}`);
-          setNewDress(initialState);
+          if (dressNew && dressNew._id) {
+            setError("");
+            navigate(`/dress/${dressNew._id}`);
+            setNewDress(initialState);
+          } else {
+          }
         } catch (err) {
           console.error(err);
           setError(err);
         }
       };
-
-
-
-
+      
 
   return (
     <div>
@@ -63,12 +64,13 @@ export default function NewDress() {
           required
         />
         <label>Neckline</label>
-        <select
+        <select 
           type="text"
           name="neckline"
           value={newDress.neckline}
           onChange={handleChange}
-        >         
+        > 
+          <option value="" disabled>Select an option</option>
           <option value="ship">Ship</option>
           <option value="v-shaped">V-shaped</option>
           <option value="square">Square</option>
@@ -88,7 +90,8 @@ export default function NewDress() {
           name="court"
           value={newDress.court}
           onChange={handleChange}
-        >        
+        > 
+          <option value="" disabled>Select an option</option>       
           <option value="princess">Princess</option>
           <option value="straight">Straight</option>
           <option value="evaded">Evaded</option>
@@ -104,9 +107,10 @@ export default function NewDress() {
           value={newDress.long}
           onChange={handleChange}
         >         
-          <option value="ship">Long</option>
-          <option value="v-shaped">Half</option>
-          <option value="square">Short</option>          
+          <option value="" disabled>Select an option</option>
+          <option value="long">Long</option>
+          <option value="half">Half</option>
+          <option value="short">Short</option>          
         </select>
         <label>Color:</label>
         <select
@@ -115,19 +119,20 @@ export default function NewDress() {
           value={newDress.color}
           onChange={handleChange}
         >          
-          <option value="princess">Black</option>
-          <option value="straight">Light Blue</option>
-          <option value="evaded">Brown</option>
-          <option value="in A">Golden</option>
-          <option value="siren">Grey</option>
-          <option value="empire">Green</option>
-          <option value="others">Ivory</option>
-          <option value="others">Multicolored</option>
-          <option value="others">Pink</option>
-          <option value="others">Red</option>
-          <option value="others">Silver</option>
-          <option value="others">White</option>
-          <option value="others">Dark blue</option>
+          <option value="" disabled>Select an option</option>
+          <option value="black">Black</option>
+          <option value="light blue">Light Blue</option>
+          <option value="brown">Brown</option>
+          <option value="golden">Golden</option>
+          <option value="grey">Grey</option>
+          <option value="green">Green</option>
+          <option value="ivory">Ivory</option>
+          <option value="multicolored">Multicolored</option>
+          <option value="pink">Pink</option>
+          <option value="red">Red</option>
+          <option value="silver">Silver</option>
+          <option value="white">White</option>
+          <option value="dark blue">Dark blue</option>
           <option value="others">Others</option>
         </select>
         <label>Size:</label>
@@ -137,6 +142,7 @@ export default function NewDress() {
         value={newDress.size}
         onChange={handleChange}
       >        
+        <option value="" disabled>Select an option</option>
         <option value="32">32</option>
         <option value="34">34</option>
         <option value="36">36</option>

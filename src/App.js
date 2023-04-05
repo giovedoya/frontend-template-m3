@@ -24,7 +24,7 @@ function App() {
         <Route path="/post" element={<Post />} />
         <Route path="/dress/:dressId" element={<DressDetail />} />
         <Route path="/dress/:dressId/edit" element={<EditDress />}  />
-        <Route path="/newdress" element={<NewDress />}  />
+        <Route path="/dress/newdress" element={<NewDress />}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
