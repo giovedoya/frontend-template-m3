@@ -28,7 +28,7 @@ export default function PostDetail() {
     try {
       const deletedPost = await postService.deletePost(postId);
       setPost(deletedPost);
-      navigate("/");
+      navigate("/post");
     } catch (error) {
       console.error(error);
     } finally {
@@ -49,7 +49,7 @@ export default function PostDetail() {
               <Link to={`/post/newpost`}>Create</Link>
             </button>
             <button>
-              <Link to={`/dress/${post._id}/edit`}>Edit post</Link>
+              <Link to={`/post/${post._id}/edit`}>Edit post</Link>
             </button>
             <button type="button" onClick={() => handleDelete(post._id)}>
               Delete post
