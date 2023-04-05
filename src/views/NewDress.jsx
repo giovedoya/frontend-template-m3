@@ -15,7 +15,6 @@ export default function NewDress() {
         price: 500,
         location: "",
         image: "",
-
     };
    
     const [ newDress, setNewDress] = useState(initialState);

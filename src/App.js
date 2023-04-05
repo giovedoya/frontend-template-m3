@@ -14,6 +14,7 @@ import DressDetail from './components/DressDetail';
 import EditDress from './views/EditDress';
 import NewDress from './views/NewDress'
 import PostDetail from './views/PostDetail';
+import NewPost from './views/NewPost';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/dress/:dressId" element={<DressDetail />} />
         <Route path="/dress/:dressId/edit" element={<EditDress />}  />
         <Route path="/dress/newdress" element={<NewDress />}  />
+        <Route path="/post/newpost" element={<NewPost />}  />
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

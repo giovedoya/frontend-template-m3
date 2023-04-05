@@ -5,6 +5,13 @@ class ReviewService {
     this.api = axios.create({
       baseURL: `${process.env.REACT_APP_BACKEND_URL}/review`,
     });
+    this.api.interceptors.request.use(config => {
+      const storedToken = localStorage.getItem('authToken');
+      if (storedToken) {
+        config.headers = { Authorization: `Bearer ${storedToken}` };
+      }
+      return config;
+    });
   }
 
   getReviews() {

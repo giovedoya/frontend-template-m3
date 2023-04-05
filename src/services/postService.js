@@ -5,6 +5,14 @@ class PostService {
     this.api = axios.create({
       baseURL: `${process.env.REACT_APP_BACKEND_URL}/post`,
     });
+
+    this.api.interceptors.request.use(config => {
+      const storedToken = localStorage.getItem('authToken');
+      if (storedToken) {
+        config.headers = { Authorization: `Bearer ${storedToken}` };
+      }
+      return config;
+    });
   }
 
   getPosts() {
