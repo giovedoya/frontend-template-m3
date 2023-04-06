@@ -19,6 +19,7 @@ export default function NewDress() {
    
     const [ newDress, setNewDress] = useState(initialState);
     const [ error, setError] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -30,11 +31,25 @@ export default function NewDress() {
         });
       };
 
+
+      const handleFileUpload = (e) => {     
+        const uploadData = new FormData();
+        uploadData.append("imageUrl", e.target.files[0]);     
+        dressService
+          .uploadImage(uploadData)
+          .then(response => {
+            setImageUrl(response.fileUrl);
+          })
+          .catch(err => console.log("Error while uploading the file: ", err));
+      };
+
+
       const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-          const dressNew = await dressService.createDress(newDress);
+        try {          
+          const dressNew = await dressService.createDress({ ...newDress, image: imageUrl });
           if (dressNew && dressNew._id) {
+            setImageUrl("");
             setError("");
             navigate(`/dress/${dressNew._id}`);
             setNewDress(initialState);
@@ -51,7 +66,7 @@ export default function NewDress() {
     <div>
       <h2>Dress edit</h2>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit} encType="multipart/form-data"
       >
         {error && <p>Something went wrong. Couldn't find your dress</p>}
         <label>Dress Name</label>
@@ -184,13 +199,7 @@ export default function NewDress() {
           required
         />
         <label>Image</label>
-        <input
-          type="text"
-          name="image"
-          value={newDress.image}
-          onChange={handleChange}
-          required
-        />
+        <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
         <label>Description</label>
         <input
           type="text"
