@@ -12,6 +12,7 @@ export default function NewPost() {
    
     const [ newPost, setNewPost] = useState(initialState);
     const [ error, setError] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -23,13 +24,25 @@ export default function NewPost() {
         });
       };
 
-      const handleSubmit = async (e) => {
-    
+
+      const handleFileUpload = (e) => {     
+        const uploadData = new FormData();
+        uploadData.append("imageUrl", e.target.files[0]);
+        postService
+          .uploadImage(uploadData)
+          .then(response => {
+            setImageUrl(response.fileUrl);
+          })
+          .catch(err => console.log("Error while uploading the file: ", err));
+      };
+
+
+      const handleSubmit = async (e) => {    
         e.preventDefault();
         try {
-          const postNew = await postService.createPost(newPost);     
-          console.log(postNew)   
+          const postNew = await postService.createPost({ ...newPost, image: imageUrl });      
           if (postNew && postNew._id) {
+            setImageUrl("");
             setError("");
             navigate(`/post/${postNew._id}`);
             setNewPost(initialState);
@@ -40,13 +53,16 @@ export default function NewPost() {
           setError(err);
         }
       };
-      
+
+
+
+
 
   return (
     <div>
       <h2>Post new</h2>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit} encType="multipart/form-data"
       >
         {error && <p>Something went wrong. Couldn't find your post</p>}
         <label>Post title</label>
@@ -67,13 +83,7 @@ export default function NewPost() {
           required
         />
         <label>Image</label>
-        <input
-          type="text"
-          name="image"
-          value={newPost.image}
-          onChange={handleChange}
-          required
-        />
+        <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
         <label>Content</label>
         <textarea
         type="text"

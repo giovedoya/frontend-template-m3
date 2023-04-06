@@ -5,25 +5,12 @@ import dressService from "../services/dressService";
 export default function EditDress() {
   const { dressId } = useParams();
   const [dress, setDress] = useState({ });
-
-
-
-  
+  const [imageUrl, setImageUrl] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  // const getDress = async () => {
-  //   try {
-  //     const response = await dressService.getDress(dressId);
-  //     setDress(response);
-  //     setError(false);
-  //   } catch (error) {
-  //     console.error(error);
-  //     setError(true);
-  //   }
-  // };
-
-
+ 
   const getDress = async () => {
     try {
       const response = await dressService.getDress(dressId);
@@ -48,9 +35,6 @@ export default function EditDress() {
     }
   };
   
-
-
-
   useEffect(() => {
     getDress();
     // eslint-disable-next-line
@@ -65,14 +49,21 @@ export default function EditDress() {
     });
   };
   
-  // const handleSold = (e) => {
-  //   setDress(prev => {
-  //     return {
-  //       ...prev,
-  //       sold: e.target.checked
-  //     }
-  //   })
-  // }
+  const handleFileUpload = (e) => {
+    setIsUploading(true);
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);     
+    dressService
+      .uploadImage(uploadData)
+      .then(response => {
+        setIsUploading(false);
+        setImageUrl(response.fileUrl);
+      })
+      .catch(err => {
+        setIsUploading(false); 
+        console.log("Error while uploading the file: ", err)
+      });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,12 +79,13 @@ export default function EditDress() {
         description: dress.description,
         price: dress.price,
         location: dress.location,
-        image: dress.image,
-      };
+        image: imageUrl,
+      };      
       await dressService.editDress(dressId, updatedDress);
       navigate(`/dress/${dressId}`);
     } catch (error) {
       console.error(error);
+      console.log(error.response.data);
     }
   };
    
@@ -102,7 +94,7 @@ export default function EditDress() {
     <div>
       <h2>Dress edit</h2>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit} encType="multipart/form-data"
       >
         {error && <p>Something went wrong. Couldn't find your dress</p>}
         <label>Dress Name</label>
@@ -119,7 +111,8 @@ export default function EditDress() {
           name="neckline"
           value={dress.neckline}
           onChange={handleChange}
-        >         
+        >
+          <option value="" disabled>Select an option</option>         
           <option value="ship">Ship</option>
           <option value="v-shaped">V-shaped</option>
           <option value="square">Square</option>
@@ -139,7 +132,8 @@ export default function EditDress() {
           name="court"
           value={dress.court}
           onChange={handleChange}
-        >        
+        > 
+          <option value="" disabled>Select an option</option>       
           <option value="princess">Princess</option>
           <option value="straight">Straight</option>
           <option value="evaded">Evaded</option>
@@ -154,7 +148,8 @@ export default function EditDress() {
           name="long"
           value={dress.long}
           onChange={handleChange}
-        >         
+        > 
+          <option value="" disabled>Select an option</option>        
           <option value="long">Long</option>
           <option value="half">Half</option>
           <option value="short">Short</option>          
@@ -165,7 +160,8 @@ export default function EditDress() {
           name="color"
           value={dress.color}
           onChange={handleChange}
-        >          
+        >     
+          <option value="" disabled>Select an option</option>     
           <option value="black">Black</option>
           <option value="light blue">Light Blue</option>
           <option value="brown">Brown</option>
@@ -188,6 +184,7 @@ export default function EditDress() {
         value={dress.size}
         onChange={handleChange}
       >        
+        <option value="" disabled>Select an option</option>
         <option value="32">32</option>
         <option value="34">34</option>
         <option value="36">36</option>
@@ -230,13 +227,7 @@ export default function EditDress() {
           required
         />
         <label>Image</label>
-        <input
-          type="text"
-          name="image"
-          value={dress.image}
-          onChange={handleChange}
-          required
-        />
+        <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
         <label>Description</label>
         <input
           type="text"
@@ -245,8 +236,8 @@ export default function EditDress() {
           onChange={handleChange}
           required
         />
-        <button type="submit">
-          Save changes
+        <button type="submit" disabled={isUploading}>
+        {isUploading ? 'Loading...' : 'Save changes'}
         </button>
       </form>
     </div>

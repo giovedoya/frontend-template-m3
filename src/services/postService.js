@@ -35,6 +35,10 @@ class PostService {
     return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err))
   }
 
+  uploadImage(file) {
+    return this.api.post("/upload", file).then(res => res.data).catch(err => console.error(err));
+  };
+
 }
 
 const postService = new PostService ();
