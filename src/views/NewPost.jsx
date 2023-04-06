@@ -11,7 +11,6 @@ export default function NewPost() {
     };
    
     const [ newPost, setNewPost] = useState(initialState);
-   console.log(newPost)
     const [ error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -28,7 +27,6 @@ export default function NewPost() {
     
         e.preventDefault();
         try {
-            console.log("Datos del formulario:", newPost);
           const postNew = await postService.createPost(newPost);     
           console.log(postNew)   
           if (postNew && postNew._id) {
@@ -36,8 +34,6 @@ export default function NewPost() {
             navigate(`/post/${postNew._id}`);
             setNewPost(initialState);
           } else {
-            console.error("No se pudo obtener el ID del vestido");
-            setError("No se pudo obtener el ID del vestido");
           }
         } catch (err) {
           console.error(err);
