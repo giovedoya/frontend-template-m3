@@ -5,8 +5,8 @@ import postService from "../services/postService";
 export default function EditPost() {
   const { postId } = useParams();
   const [post, setPost] = useState({ });
-
-  
+  const [imageUrl, setImageUrl] = useState(""); 
+  const [isUploading, setIsUploading] = useState(false); 
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
@@ -42,6 +42,24 @@ export default function EditPost() {
     });
   };
   
+  const handleFileUpload = (e) => {
+    setIsUploading(true);
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);     
+    postService
+      .uploadImage(uploadData)
+      .then(response => {
+        setIsUploading(false);
+        setImageUrl(response.fileUrl);
+      })
+      .catch(err => {
+        setIsUploading(false); 
+        console.log("Error while uploading the file: ", err)
+      });
+  };
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {    
@@ -49,7 +67,7 @@ export default function EditPost() {
         title: post.title,
         author: post.author,
         content: post.content,
-        image: post.image,        
+        image: imageUrl,        
       };
       await postService.editPost(postId, updatedPost);
       navigate(`/post/${postId}`);
@@ -83,13 +101,8 @@ export default function EditPost() {
           required
         />
         <label>Image</label>
-        <input
-          type="text"
-          name="image"
-          value={post.image}
-          onChange={handleChange}
-          required
-        /> 
+        <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
+        <label>Description</label>
         <label>Content</label>
         <input
           type="text"
@@ -98,8 +111,8 @@ export default function EditPost() {
           onChange={handleChange}
           required
         />               
-        <button type="submit">
-          Save changes
+        <button type="submit" disabled={isUploading}>
+        {isUploading ? 'Loading...' : 'Save changes'}
         </button>
       </form>
     </div>
