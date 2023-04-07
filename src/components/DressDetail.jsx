@@ -52,9 +52,9 @@ export default function DressDetail() {
     <div>
       {user && user._id === dress.seller._id && (
         <>
-          <button>
+          {/* <button>
             <Link to={`/dress/newdress`}>Create</Link>
-          </button>
+          </button> */}
           <button>
             <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
           </button>
