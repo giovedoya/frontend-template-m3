@@ -3,6 +3,7 @@ import dressService from "../services/dressService";
 // import { Link } from 'react-router-dom'
 import Card from "../components/Card";
 import { useAuth } from "../hooks/useAuth";
+import SearchDress from "../components/SearchDress";
 
 
 export default function Home() {
@@ -21,10 +22,11 @@ export default function Home() {
     getDresses();
   }, []);
 if (user) {
-  console.log('my user role is', user.role )
+
 }
   return (
 <div className="flex gap-4">
+    <SearchDress />
   {dresses &&
     dresses.length > 0 &&
     dresses.map((elem) => {
