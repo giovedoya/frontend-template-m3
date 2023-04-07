@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import profileService from '../services/profileService';
 
@@ -21,18 +21,17 @@ export default function ProfileViews() {
 
   useEffect(() => {
     getProfile()
-  }, []) 
+  }, [profile]) 
 
   return (
     <div>
       {isLoading && <div>Loading...</div>}
       {!isLoading && (
         <div>
-          <h3>{profile.username}</h3>
+          <h3>Username: {user.username}</h3>
           <p>Email: {user.email}</p>
         </div>
-      )}
-      <Link to="/profile/edit">Edit profile</Link>
+      )}     
     </div>
   );
 }

@@ -16,6 +16,7 @@ import NewDress from './views/NewDress'
 import PostDetail from './views/PostDetail';
 import NewPost from './views/NewPost';
 import EditPost from './views/EditPost';
+import ProfileViews from './views/ProfileViews';
 // import NewReview from './views/NewReview';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/post/:postId/edit" element={<IsPrivate><EditPost /></IsPrivate>} />
         {/* <Route path="/review/newreview" element={<NewReview />}  /> */}
+        <Route path="/profile" element={<IsPrivate><ProfileViews /></IsPrivate>}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
