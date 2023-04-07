@@ -42,13 +42,23 @@ export default function DressDetail() {
 
   return (
     <div>
-      <h2>Dress details</h2>
       {dress !== null ? (
   <>
     <h3>{dress.name}</h3>
-    <p>{dress.designer}</p>
+    <p>Disigner {dress.designer}</p>
     <img style={{ width: "300px" }} src={dress.image} alt={dress.title} />
-    <p>{dress.description}</p>
+    <h2>The Dress</h2>
+    <p>The Dress {dress.description}</p>
+    <h2>characteristics</h2>
+    <ul>
+      <li>{dress.neckline}</li>
+      <li>{dress.court}</li>
+      <li>{dress.color}</li>
+      <li>{dress.size}</li>
+      <li>{dress.long}</li>
+      <li>{dress.price}</li>
+      <li>{dress.location}</li>
+    </ul>
     <div>
       {user && user._id === dress.seller._id && (
         <>
