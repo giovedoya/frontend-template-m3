@@ -28,8 +28,8 @@ function App() {
         <Route path="/post" element={<Post />} />
         <Route path="/dress/:dressId" element={<DressDetail />} />
         <Route path="/dress/:dressId/edit" element={<IsPrivate><EditDress /></IsPrivate>}  />
-        <Route path="/dress/newdress" element={<NewDress />}  />
-        <Route path="/post/newpost" element={<NewPost />}  />
+        <Route path="/dress/newdress" element={<IsPrivate><NewDress /></IsPrivate>}   />
+        <Route path="/post/newpost" element={<IsPrivate><NewPost /></IsPrivate>}   />
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/post/:postId/edit" element={<IsPrivate><EditPost /></IsPrivate>} />
         {/* <Route path="/review/newreview" element={<NewReview />}  /> */}
