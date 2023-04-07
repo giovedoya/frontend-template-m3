@@ -30,7 +30,7 @@ class ReviewService {
     return this.api.put(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
-  createReview(body) {
+  createReview(body) { console.log('Review data:', body);
     return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err))
   }
 

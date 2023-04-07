@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import dressService from "../services/dressService";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import NewReview from "./NewReview";
 
 export default function DressDetail() {
   const { dressId } = useParams();
@@ -62,6 +63,7 @@ export default function DressDetail() {
           </button>
         </>
       )}
+      <NewReview />
     </div>
   </>
 ) : null}
