@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <div>
       {user && <p>Hello {user.username}</p> }
-      <ul>
+      <ul>      
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/post">Post</NavLink></li>
         {!isLoggedIn && <li><NavLink to="/signup">Sign up</NavLink></li>}
