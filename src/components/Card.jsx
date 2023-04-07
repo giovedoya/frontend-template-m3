@@ -8,7 +8,7 @@ export default function Card(props) {
 <div >
   <img style={{ width: "300px" }} src={dress.image} alt={dress.name} />
   <h2 >
-    <Link to={`/dress/${dress._id}`} >{dress.name}</Link>
+    <Link to={`/dress/${dress._id}`} >{dress.designer}</Link>
   </h2>
   <h3 className="">€ {dress.price}</h3>
   <h3 className="">Size: {dress.size}</h3>

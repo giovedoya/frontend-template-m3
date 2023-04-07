@@ -5,16 +5,18 @@ import reviewService from '../services/reviewService';
 function Star({ selected, onClick }) {
   return <div onClick={onClick}>{selected ? '★' : '☆'}</div>;
 }
+// numeritos cargarse la funcion 
+
 
 export default function NewReview() {
   const initialState = {
-    rating: '',
+    rating: 1,
     comment: '',
   };
   const { dressId } = useParams();
   const [newReview, setNewReview] = useState(initialState);
   const [error, setError] = useState('');
-  const [selectedStars, setSelectedStars] = useState(0);
+  // const [selectedStars, setSelectedStars] = useState(0);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,15 +28,15 @@ export default function NewReview() {
     });
   };
 
-  const handleStarClick = (starCount) => {
-    setSelectedStars(starCount);
-    setNewReview((prev) => {
-      return {
-        ...prev,
-        rating: starCount,
-      };
-    });
-  };
+  // const handleStarClick = (starCount) => {
+  //   setSelectedStars(starCount);
+  //   setNewReview((prev) => {
+  //     return {
+  //       ...prev,
+  //       rating: starCount,
+  //     };
+  //   });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +45,7 @@ export default function NewReview() {
 
       if (reviewNew && reviewNew._id) {
         setError('');
-        navigate(`/review/${reviewNew._id}`);
+        navigate(`/review/${reviewNew._id}`); // al vestido
         setNewReview(initialState);
       } else {
 
@@ -60,13 +62,17 @@ export default function NewReview() {
       <form onSubmit={handleSubmit}>
         {error && <p>Something went wrong. Couldn't find your review</p>}
         <label>Rating</label>
-        {[1, 2, 3, 4, 5].map((i) => (
+        {/* {[1, 2, 3, 4, 5].map((i) => (
           <Star
             key={i}
             selected={i <= selectedStars}
             onClick={() => handleStarClick(i)}
           />
-        ))}
+        ))} */}
+        <label>Comment</label>
+        <input type="text" value={newReview.rating} onChange={handleChange}
+          required/>
+        
         <label>Comment</label>
         <textarea
           type="text"

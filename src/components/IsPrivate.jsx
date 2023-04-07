@@ -3,7 +3,7 @@ import { useAuth } from "../hooks/useAuth";
 
 function IsPrivate({ children }) {
 
-  const { isLoggedIn, isLoading } = useAuth();
+  const { isLoggedIn, isLoading, } = useAuth();
 
   // If the authentication is still loading 
   if (isLoading) return <p>Loading ...</p>;

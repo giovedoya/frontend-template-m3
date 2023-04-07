@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import dressService from "../services/dressService";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function DressDetail() {
   const { dressId } = useParams();
   const [ dress, setDress ] = useState(null);
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const { user } = useContext(AuthContext);
 
+  
   const getDress = async () => {
     try {
       const response = await dressService.getDress(dressId);
@@ -40,24 +43,28 @@ export default function DressDetail() {
     <div>
       <h2>Dress details</h2>
       {dress !== null ? (
+  <>
+    <h3>{dress.name}</h3>
+    <p>{dress.designer}</p>
+    <img style={{ width: "300px" }} src={dress.image} alt={dress.title} />
+    <p>{dress.description}</p>
+    <div>
+      {user && user._id === dress.seller._id && (
         <>
-          <h3>{dress.name}</h3>
-          <p>{dress.designer}</p>
-          <img style={{ width: "300px" }} src={dress.image} alt={dress.title} />
-          <p>{dress.description}</p>
-          <div>
-            <button>
-              <Link to={`/dress/newdress`}>Create</Link>
-            </button>
-            <button>
-              <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
-            </button>
-            <button type="button" onClick={() => handleDelete(dress._id)}>
-              Delete dress
-            </button>
-          </div>
+          <button>
+            <Link to={`/dress/newdress`}>Create</Link>
+          </button>
+          <button>
+            <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
+          </button>
+          <button type="button" onClick={() => handleDelete(dress._id)}>
+            Delete dress
+          </button>
         </>
-      ) : null}
+      )}
+    </div>
+  </>
+) : null}
       {error ? <p>{error}</p> : null}
     </div>
   );
