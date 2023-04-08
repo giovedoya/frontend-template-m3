@@ -24,13 +24,16 @@ export default function Home() {
   }, []);
 
   return (
-<div className="flex gap-4">
+<div >
     <SearchDress />
-  {dresses &&
+    <div className="flex gap-3 flex-wrap rounded-lg">    
+    {dresses &&
     dresses.length > 0 &&
     dresses.map((elem) => {
-      return <Card key={elem._id} dress={elem} />;
+      return <Card   key={elem._id} dress={elem} />;
     })}
+    </div>
+
 </div>
 
   );

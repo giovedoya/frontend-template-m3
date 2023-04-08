@@ -1,20 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import React, { useState, useEffect } from 'react';
+// import { AuthContext } from '../context/AuthContext';
 import profileService from '../services/profileService';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 export default function ProfileViews() {
-  const { user } = useContext(AuthContext);
-  const [profile, setProfile] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  // const { user } = useContext(AuthContext);
+  const { userId} = useParams();
+  const [ profile, setProfile ] = useState({});
   
-
   const getProfile = async () => {
     try {
-      const response = await profileService.getProfile();
+      const response = await profileService.getProfile(userId);
       setProfile(response);
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -22,21 +20,22 @@ export default function ProfileViews() {
 
   useEffect(() => {
     getProfile();
-  }, []);
+      // eslint-disable-next-line
+  }, [userId]);
 
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && (
+    
         <div>
-          <h3>Username: {user.username}</h3>
-          <p>Email: {user.email}</p>
+          <h3>Username: {profile.username}</h3>
+          <p>Email: {profile.email}</p>
+          <h2>Are you ready to sell? It will only take a few minutes</h2>
           <button>
                 <Link to={`/dress/newdress`}>Create a new dress</Link>
               </button>            
         </div>
-      )}     
+           
     </div>
   );
 }

@@ -15,8 +15,8 @@ class ProfileService {
 }
 
 
-getProfile() {
-    return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));
+getProfile(id) {
+    return this.api.get(`/${id}`).then(({ data }) => data).catch(err => console.error(err));
   }
 
   

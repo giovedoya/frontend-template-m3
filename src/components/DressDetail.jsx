@@ -46,7 +46,7 @@ export default function DressDetail() {
   <>
     <h3>{dress.name}</h3>
     <p>Disigner {dress.designer}</p>
-    <img style={{ width: "300px" }} src={dress.image} alt={dress.title} />
+    <img className="rounded-lg w-1/5"  src={dress.image} alt={dress.title} />
     <h2>The Dress</h2>
     <p>The Dress {dress.description}</p>
     <h2>characteristics</h2>
