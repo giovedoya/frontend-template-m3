@@ -49,7 +49,7 @@ export default function Login() {
 
   return (
 <div className="flex justify-center items-center h-screen bg-gray-100">
-  <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
+  <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
     <h2 className="text-2xl font-bold mb-4">Log in</h2>
     <div className="mb-4">
       <label htmlFor="email" className="block font-medium text-gray-700 mb-2">
@@ -84,12 +84,13 @@ export default function Login() {
     )}
     <button
       type="submit"
-      className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400"
+      className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400 w-full"
     >
       Log in
     </button>
   </form>
 </div>
+
 
 
   )

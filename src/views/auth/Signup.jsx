@@ -46,21 +46,90 @@ export default function Signup() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input required type="text" name="username" value={user.username} onChange={handleChange} />
-        <label>Email</label>
-        <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Location</label>
-        <input required type="text" name="location" value={user.location} onChange={handleChange} />
-        <label>Password</label>
-        <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
-        <label>Repeat the password</label>
-        <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <main className="bg-gray-100 min-h-screen flex items-center justify-center">
+    <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+      <h2 className="text-2xl font-bold mb-4">Register</h2>
+      <div className="mb-4">
+        <label htmlFor="username" className="block font-medium text-gray-700 mb-2">
+          Username
+        </label>
+        <input
+          required
+          type="text"
+          id="username"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
+          className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="email" className="block font-medium text-gray-700 mb-2">
+          Email
+        </label>
+        <input
+          required
+          type="email"
+          id="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
+          className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="location" className="block font-medium text-gray-700 mb-2">
+          Location
+        </label>
+        <input
+          required
+          type="text"
+          id="location"
+          name="location"
+          value={user.location}
+          onChange={handleChange}
+          className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="password" className="block font-medium text-gray-700 mb-2">
+          Password
+        </label>
+        <input
+          required
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="passwordControl" className="block font-medium text-gray-700 mb-2">
+          Repeat the password
+        </label>
+        <input
+          required
+          type="password"
+          id="passwordControl"
+          name="passwordControl"
+          value={passwordControl}
+          onChange={(e) => setPasswordControl(e.target.value)}
+          className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+        />
+      </div>
+      {errorMessage && (
+        <p className="text-red-500 mb-4">{errorMessage}</p>
+      )}
+      <button
+        type="submit"
+        className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400"
+      >
+        Register
+      </button>
+    </form>
+  </main>
+  
   )
 }
