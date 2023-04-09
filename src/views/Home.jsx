@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import dressService from "../services/dressService";
 import Card from "../components/Card";
 import SearchDress from "../components/SearchDress";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [dresses, setDresses] = useState([]);
@@ -51,6 +52,7 @@ export default function Home() {
       ))}
   </div>
 </main>
+<Footer />
     </div>
   
 )}
