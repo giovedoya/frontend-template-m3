@@ -6,8 +6,9 @@ export default function SearchDress({ handleSearchValue }) {
   };
 
   return (
-    <div>
-      <input type="text" name="search" onChange={handleChange} />
-    </div>
+  <div >
+    <input  type="text" name="search" placeholder="Search dresses" className="border border-gray-300 px-4 py-2 rounded-md w-full p-4 flex justify-center items-center" onChange={handleChange} />
+  </div>
+
   );
 }

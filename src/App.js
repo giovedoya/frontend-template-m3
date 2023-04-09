@@ -7,7 +7,7 @@ import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
 import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
-import PrivateView from './views/PrivateView';
+// import PrivateView from './views/PrivateView';
 import IsPrivate from './components/IsPrivate';
 import Post from './views/Post'
 import DressDetail from './components/DressDetail';
@@ -33,11 +33,9 @@ function App() {
         <Route path="/post/newpost" element={<IsPrivate><NewPost /></IsPrivate>}   />
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/post/:postId/edit" element={<IsPrivate><EditPost /></IsPrivate>} />
-        {/* <Route path="/review/newreview" element={<NewReview />}  /> */}
         <Route path="/profile" element={<IsPrivate><ProfileViews /></IsPrivate>}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

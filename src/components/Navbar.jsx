@@ -50,14 +50,6 @@ export default function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/private"
-            className="hover:text-black px-3 py-2 rounded"
-          >
-            Private view
-          </NavLink>
-        </li>
-        <li>
           <button
             className="hover:text-black px-3 py-2 rounded"
             onClick={() => logOutUser()}
