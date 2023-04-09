@@ -10,6 +10,8 @@ export default function Card(props) {
   <h2 >
     <Link to={`/dress/${dress._id}`} >{dress.designer}</Link>
   </h2>
+  <h3 className="">{dress.designer}</h3>
+  <h3 className="">{dress.long}</h3>
   <h3 className="">€ {dress.price}</h3>
   <h3 className="">Size: {dress.size}</h3>
 </div>

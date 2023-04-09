@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import dressService from "../services/dressService";
-// import { Link } from 'react-router-dom'
 import Card from "../components/Card";
 import SearchDress from "../components/SearchDress";
 
-
 export default function Home() {
-  const [dresses, setDress] = useState([]);
+  const [dresses, setDresses] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
-
-  // all dresses 
   const getDresses = async () => {
     try {
       const response = await dressService.getDresses();
-      setDress(response);
+      setDresses(response);
     } catch (error) {
       console.error(error);
     }
@@ -23,18 +20,33 @@ export default function Home() {
     getDresses();
   }, []);
 
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
+
   return (
-<div >
-    <SearchDress />
-    <div className="flex gap-3 flex-wrap rounded-lg">    
-    {dresses &&
-    dresses.length > 0 &&
-    dresses.map((elem) => {
-      return <Card   key={elem._id} dress={elem} />;
-    })}
-    </div>
+    <div>
+      <div className="search_container">
+        <SearchDress handleSearchValue={handleSearch} />
+      </div>
 
+      <div className="card_container">
+  {dresses
+    .filter(
+      (elem) =>
+        elem.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.description.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.neckline.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.court.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.long.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.color.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.designer.toLowerCase().includes(searchValue.toLowerCase()) ||
+        elem.location.toLowerCase().includes(searchValue.toLowerCase())
+    )
+    .map((elem) => (
+      <Card key={elem._id} dress={elem} />
+    ))}
 </div>
-
+    </div>
   );
 }

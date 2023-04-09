@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function SearchDress() {
+export default function SearchDress({ handleSearchValue }) {
+  const handleChange = (e) => {
+    handleSearchValue(e.target.value);
+  };
+
   return (
     <div>
-    <input type="text" name='search' placeholder="What are you looking for?"/>
+      <input type="text" name="search" onChange={handleChange} />
     </div>
-
-  )
+  );
 }
