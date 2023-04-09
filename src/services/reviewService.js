@@ -3,7 +3,7 @@ import axios from 'axios';
 class ReviewService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_BACKEND_URL}/review`,
+      baseURL: `${process.env.REACT_APP_BACKEND_URL}/reviews`,
     });
     this.api.interceptors.request.use(config => {
       const storedToken = localStorage.getItem('authToken');
@@ -30,8 +30,8 @@ class ReviewService {
     return this.api.put(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
-  createReview(body) { console.log('Review data:', body);
-    return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err))
+  createReview(id, body) {
+    return this.api.post(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
 }

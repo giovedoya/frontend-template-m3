@@ -26,16 +26,12 @@ export default function NewReview() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitting review...');
     try {
-      const reviewNew = await reviewService.createReview({...newReview, dressId: dressId});
-      console.log('Review created:', newReview); 
+      const reviewNew = await reviewService.createReview(dressId, {...newReview, dressId: dressId});
       if (reviewNew && reviewNew._id) {
         setError('');
-        navigate(`/dress/${dressId._id}`); // al vestido
+        navigate(`/dress/${dressId}`);
         setNewReview(initialState);
-      } else {
-        // handle error
       }
     } catch (err) {
       console.log('Error:', err);
