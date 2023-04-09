@@ -41,42 +41,42 @@ export default function DressDetail() {
   };
 
   return (
-    <div>
+    <div className="container mx-auto py-6">
       {dress !== null ? (
-  <>
-    <h3>{dress.name}</h3>
-    <p>Designer {dress.designer}</p>
-    <img className="rounded-lg w-1/5"  src={dress.image} alt={dress.title} />
-    <h2>The Dress</h2>
-    <p>The Dress {dress.description}</p>
-    <h2>characteristics</h2>
-    <ul>
-      <li>{dress.neckline}</li>
-      <li>{dress.court}</li>
-      <li>{dress.color}</li>
-      <li>{dress.size}</li>
-      <li>{dress.long}</li>
-      <li>{dress.price}</li>
-      <li>{dress.location}</li>
-    </ul>
-    <div>
-      {user && user._id === dress.seller._id && (
         <>
-          {/* <button>
-            <Link to={`/dress/newdress`}>Create</Link>
-          </button> */}
-          <button>
-            <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
-          </button>
-          <button type="button" onClick={() => handleDelete(dress._id)}>
-            Delete dress
-          </button>
+          <h1 className="text-2xl font-bold text-gray-800 mb-6">{dress.name}</h1>
+          <div className="flex flex-wrap mb-8">
+            <img className="rounded-lg w-full sm:w-1/2 mb-4 sm:mb-0 sm:mr-4" src={dress.image} alt={dress.title} />
+            <div className="flex flex-col justify-between w-full sm:w-1/2">
+              <h2 className="text-lg font-bold text-gray-800 mb-4">The Dress</h2>
+              <p className="mb-6">{dress.description}</p>
+              <h2 className="text-lg font-bold text-gray-800 mb-4">Characteristics</h2>
+              <ul className="mb-6">
+                <li>Neckline: {dress.neckline}</li>
+                <li>Court: {dress.court}</li>
+                <li>Color: {dress.color}</li>
+                <li>Size: {dress.size}</li>
+                <li>Length: {dress.long}</li>
+                <li>Price: {dress.price}</li>
+                <li>Location: {dress.location}</li>
+              </ul>
+              <div className="flex justify-between items-center">
+                {user && user._id === dress.seller._id && (
+                  <>
+                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-700">
+                      <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
+                    </button>
+                    <button className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-700" type="button" onClick={() => handleDelete(dress._id)}>
+                      Delete dress
+                    </button>
+                  </>
+                )}
+                <NewReview />
+              </div>
+            </div>
+          </div>
         </>
-      )}
-      <NewReview />
-    </div>
-  </>
-) : null}
+      ) : null}
       {error ? <p>{error}</p> : null}
     </div>
   );
