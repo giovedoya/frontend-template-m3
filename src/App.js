@@ -17,7 +17,7 @@ import PostDetail from './views/PostDetail';
 import NewPost from './views/NewPost';
 import EditPost from './views/EditPost';
 import ProfileViews from './views/ProfileViews';
-// import NewReview from './views/NewReview';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -41,6 +41,8 @@ function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
+
     </div>
   );
 }
