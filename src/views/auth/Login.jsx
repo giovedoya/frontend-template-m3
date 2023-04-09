@@ -48,15 +48,49 @@ export default function Login() {
   }, [isLoggedIn])
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
-        <input required type="password" name="password" value={user.password} onChange={handleChange} />
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Log in </button>
-      </form>
+<div className="flex justify-center items-center h-screen bg-gray-100">
+  <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
+    <h2 className="text-2xl font-bold mb-4">Log in</h2>
+    <div className="mb-4">
+      <label htmlFor="email" className="block font-medium text-gray-700 mb-2">
+        Email
+      </label>
+      <input
+        required
+        type="email"
+        id="email"
+        name="email"
+        value={user.email}
+        onChange={handleChange}
+        className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+      />
     </div>
+    <div className="mb-4">
+      <label htmlFor="password" className="block font-medium text-gray-700 mb-2">
+        Password
+      </label>
+      <input
+        required
+        type="password"
+        id="password"
+        name="password"
+        value={user.password}
+        onChange={handleChange}
+        className="border border-gray-400 p-2 rounded w-full focus:outline-none focus:ring focus:ring-indigo-400"
+      />
+    </div>
+    {errorMessage && (
+      <p className="text-red-500 mb-4">{errorMessage}</p>
+    )}
+    <button
+      type="submit"
+      className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400"
+    >
+      Log in
+    </button>
+  </form>
+</div>
+
+
   )
 }
