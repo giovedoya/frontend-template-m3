@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 
 function Footer() {
@@ -28,9 +28,8 @@ function Footer() {
               <div className="w-full md:w-1/4 mb-8 md:mb-0">
                 <h4 className="text-xl font-bold mb-4">follow us</h4>
                 <ul className="list-unstyled flex">
-                  <li><a href="https://www.facebook.com/tuaplicacion"><FaFacebookF className="text-2xl mr-4"/></a></li>
-                  <li><a href="https://www.instagram.com/tuaplicacion"><FaInstagram className="text-2xl mr-4"/></a></li>
-                  <li><a href="https://www.twitter.com/tuaplicacion"><FaTwitter className="text-2xl"/></a></li>
+                  <li><a href="https://www.facebook.com/weddsellonline"><FaFacebookF className="text-2xl mr-4"/></a></li>
+                  <li><a href="https://www.instagram.com/weddsell/"><FaInstagram className="text-2xl mr-4"/></a></li>                  
                 </ul>
               </div>
               <div className="w-full md:w-1/4">
