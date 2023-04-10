@@ -4,7 +4,6 @@ import dressService from "../services/dressService";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import NewReview from "./NewReview";
-import showUploadWidget from '../utils.js/AddImgs'
 
 export default function DressDetail() {
   const { dressId } = useParams();
@@ -79,8 +78,6 @@ export default function DressDetail() {
         </>
       ) : null}
       {error ? <p>{error}</p> : null}
-      <button onClick={showUploadWidget}>Cargar imagen</button>
-
     </div>
   );
 }
