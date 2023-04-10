@@ -39,10 +39,14 @@ export default function ProfileViews() {
               <h2 className="text-2xl font-bold mb-4">Create a new Post</h2>
               <div className="flex flex-col space-y-4">
                 <p className="text-gray-500">
-                Here you can create a new post to keep the brides informed.             </p>
-                <button className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400">
-                  Create a new post
-                </button>
+                Here you can create a new post to keep the brides informed.
+                </p>
+                <Link
+                to={`/post/newpost`}
+                className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400"
+              >
+                Create a new post
+              </Link>
               </div>
             </div>
           )}
