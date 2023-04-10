@@ -78,43 +78,89 @@ export default function EditPost() {
    
 
   return (
-    <div>
-      <h2>Post edit</h2>
-      <form
-        onSubmit={handleSubmit}
-      >
-        {error && <p>Something went wrong. Couldn't find your post</p>}
-        <label>Title Name</label>
+
+<section className="container mx-auto px-4 py-8 flex justify-center">
+  <div className="w-full max-w-2xl">
+    <h2 className="text-2xl font-bold mb-4 text-center">Edit post</h2>
+    <form
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+      className="space-y-4"
+    >
+      {error && (
+        <p className="text-red-500">
+          Something went wrong. Couldn't find your post
+        </p>
+      )}
+      <div className="flex flex-col space-y-2">
+        <label htmlFor="title" className="block mb-1 font-bold text-gray-700">
+          Post title
+        </label>
         <input
           type="text"
           name="title"
+          id="title"
           value={post.title}
           onChange={handleChange}
           required
-        />        
-        <label>Author</label>
+          className="w-full border border-gray-300 p-2 rounded"
+        />
+      </div>
+      <div className="flex flex-col space-y-2">
+        <label htmlFor="author" className="block mb-1 font-bold text-gray-700">
+          Author
+        </label>
         <input
           type="text"
           name="author"
+          id="author"
           value={post.author}
           onChange={handleChange}
           required
+          className="w-full border border-gray-300 p-2 rounded"
         />
-        <label>Image</label>
-        <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
-        <label>Description</label>
-        <label>Content</label>
+      </div>
+      <div className="flex flex-col space-y-2">
+        <label htmlFor="image" className="block mb-1 font-bold text-gray-700">
+          Image
+        </label>
         <input
+          type="file"
+          name="image"
+          id="image"
+          onChange={(e) => handleFileUpload(e)}
+          className="w-full border border-gray-300 p-2 rounded"
+        />
+      </div>
+      <div className="flex flex-col space-y-2">
+        <label htmlFor="content" className="block mb-1 font-bold text-gray-700">
+          Content
+        </label>
+        <textarea
           type="text"
           name="content"
+          id="content"
           value={post.content}
           onChange={handleChange}
           required
-        />               
-        <button type="submit" disabled={isUploading}>
-        {isUploading ? 'Loading...' : 'Save changes'}
+          className="w-full border border-gray-300 p-2 rounded"
+          rows="5"
+        />
+      </div>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          disabled={isUploading}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        >
+          {isUploading ? 'Loading...' : 'Save changes'}
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
   );
 }
