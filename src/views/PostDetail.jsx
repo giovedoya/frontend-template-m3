@@ -41,32 +41,47 @@ export default function PostDetail() {
   };
 
   return (
-    <div>  
-     {post !== null ? (
-  <>
-    <h3>{post.title}</h3>
-    <h2>{post.author}</h2>          
-    <img style={{ width: "300px" }} src={post.image} alt={post.title} />
-    <p>{post.content}</p>
-    <div>
-      {user && (user._id === post.author._id || user.role === "admin") && (
-        <>
-          <button>
-            <Link to={`/post/newpost`}>Create</Link>
-          </button>
-          <button>
-            <Link to={`/post/${post._id}/edit`}>Edit post</Link>
-          </button>
-          <button type="button" onClick={() => handleDelete(post._id)}>
-            Delete post
-          </button>
-        </>
-      )}
-    </div>
-  </>
-) : null}
+    <section className="container mx-auto px-4 py-8">
+  <div className="max-w-2xl mx-auto">
+    {post !== null ? (
+      <>
+        <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+        <h2 className="text-lg font-semibold mb-4">{post.author}</h2>
+        <img
+          className="w-full max-w-md mx-auto mb-4"
+          src={post.image}
+          alt={post.title}
+        />
+        <p className="text-gray-800 text-lg leading-relaxed mb-4">
+          {post.content}
+        </p>
+        <div className="flex justify-center space-x-4">
+          {user && (user._id === post.author._id || user.role === "admin") && (
+            <>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                <Link to={`/post/newpost`}>Create</Link>
+              </button>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                <Link to={`/post/${post._id}/edit`}>Edit post</Link>
+              </button>
+              <button
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                type="button"
+                onClick={() => handleDelete(post._id)}
+              >
+                Delete post
+              </button>
+            </>
+          )}
+        </div>
+      </>
+    ) : (
+      <p>No post found.</p>
+    )}
 
-      {error ? <p>{error}</p> : null}
-    </div>
+    {error ? <p className="text-red-500">{error}</p> : null}
+  </div>
+</section>
+
   );
 }
