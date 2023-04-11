@@ -39,7 +39,7 @@ class DressService {
     return this.api.post("/upload", file).then(res => res.data).catch(err => console.error(err));
   };
 
-  //getDressesOfUserInSession() tipo get 
+
 
 }
 
