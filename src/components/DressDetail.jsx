@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import dressService from "../services/dressService";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import NewReview from "./NewReview";
 
 export default function DressDetail() {
   const { dressId } = useParams();
   const [ dress, setDress ] = useState(null);
-  const navigate = useNavigate();
+
   const [error, setError] = useState(false);
-  const { user } = useContext(AuthContext);
+
 
   
   const getDress = async () => {
@@ -27,18 +25,6 @@ export default function DressDetail() {
     getDress();
        // eslint-disable-next-line
   }, [dressId]);
-
-  const handleDelete = async (dressId) => {
-    try {
-      const deletedDress = await dressService.deleteDress(dressId);
-      setDress(deletedDress);
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    } finally {
-      getDress();
-    }
-  };
 
   return (
     <div className="container mx-auto py-6">
@@ -60,17 +46,7 @@ export default function DressDetail() {
                 <li>Price: {dress.price}</li>
                 <li>Location: {dress.location}</li>
               </ul>
-              <div className="flex justify-between items-center">
-                {user && user._id === dress.seller._id && (
-                  <>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-700">
-                      <Link to={`/dress/${dress._id}/edit`}>Edit dress</Link>
-                    </button>
-                    <button className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-700" type="button" onClick={() => handleDelete(dress._id)}>
-                      Delete dress
-                    </button>
-                  </>
-                )}
+              <div className="flex justify-between items-center"> 
                 <NewReview />
               </div>
             </div>

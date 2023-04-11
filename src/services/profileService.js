@@ -20,7 +20,7 @@ getProfile(id) {
   }
 
 getDressesOfUserInSession() {
-    return this.api.get("/user/dresses").then(({ data }) => data).catch(err => console.error(err));
+    return this.api.get("/dresses").then(({ data }) => data).catch(err => console.error(err));
   } 
 
 
