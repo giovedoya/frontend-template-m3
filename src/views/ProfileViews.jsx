@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import profileService from "../services/profileService";
 import dressService from "../services/dressService";
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 export default function ProfileViews() {
   const { user } = useAuth();
@@ -82,23 +82,36 @@ export default function ProfileViews() {
           {dresses &&
             dresses.length > 0 &&
             dresses.map((dress) => (
-<div key={dress._id} className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-  <img className="rounded-lg w-full" src={dress.image} alt={dress.title} />
-  <div className="flex flex-col justify-between">
-    <div>
-      <h3 className="text-xl font-bold mb-4">{dress.designer}</h3>
-      <p className="mb-4">{dress.description}</p>
-    </div>
-    <div className="flex justify-end">
-      <button className="px-4 py-2  text-black rounded-lg shadow-md hover:bg-blue-700 mr-2">
-        <Link to={`/dress/${dress._id}/edit`}><FaEdit className="inline-block mr-2"/></Link>
-      </button>
-      <button className="px-4 py-2 text-black rounded-lg shadow-md hover:bg-red-700" type="button" onClick={() => handleDelete(dress._id)}>
-        <FaTrash className="inline-block mr-2"/>
-      </button>
-    </div>
-  </div>
-</div>
+              <div
+                key={dress._id}
+                className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-4"
+              >
+                <img
+                  className="rounded-lg w-full"
+                  src={dress.image}
+                  alt={dress.title}
+                />
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">{dress.designer}</h3>
+                    <p className="mb-4">{dress.description}</p>
+                  </div>
+                  <div className="flex justify-end">
+                    <button className="px-4 py-2  text-black rounded-lg shadow-md hover:bg-blue-700 mr-2">
+                      <Link to={`/dress/${dress._id}/edit`}>
+                        <FaEdit className="inline-block mr-2" />
+                      </Link>
+                    </button>
+                    <button
+                      className="px-4 py-2 text-black rounded-lg shadow-md hover:bg-red-700"
+                      type="button"
+                      onClick={() => handleDelete(dress._id)}
+                    >
+                      <FaTrash className="inline-block mr-2" />
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
         </div>
       </div>
