@@ -4,7 +4,7 @@ import postService from "../services/postService";
 import PostCards from "../components/PostCards";
 
 
-export default function Home() {
+export default function Post() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -21,16 +21,19 @@ export default function Home() {
   }, []);
 
   return (
-<div className="flex flex-wrap justify-center gap-4 mx-4">
-  {posts && posts.length > 0 && posts.map((elem) => {
-    return (
-      <article key={elem._id} className="bg-white rounded-lg p-6 w-full lg:w-1/2 xl:w-1/3 mx-4 my-4">
-        <PostCards posts={elem} />
-      </article>
-    );
-  })}
-</div>
-
-
+    <div className="flex flex-wrap justify-center gap-4 mx-4">      
+      {posts &&
+        posts.length > 0 &&
+        posts.map((elem) => {
+          return (
+            <article
+              key={elem._id}
+              className="bg-white rounded-lg p-6 w-full lg:w-1/2 xl:w-1/3 mx-4 my-4"
+            >
+              <PostCards posts={elem} />
+            </article>
+          );
+        })}
+    </div>
   );
 }
