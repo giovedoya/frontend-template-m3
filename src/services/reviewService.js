@@ -34,6 +34,19 @@ class ReviewService {
     return this.api.post(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
+  getReviewOfUserInSession(id) {
+    return this.api.get(`/${id}`).then(({ data }) => data).catch(err => console.error(err));
+  }
+
+  getReviewOfDress(dressId) {
+  return this.api.get(`/review/${dressId}`).then(({ data }) => data).catch(err => console.error(err));
+}
+
+  getReviewsByDressId(dressId) {
+  return this.api.get(`/reviews/${dressId}`).then(({ data }) => data).catch(err => console.error(err));
+}
+
+
 }
 
 const reviewService = new ReviewService ();
