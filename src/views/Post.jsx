@@ -3,6 +3,7 @@ import postService from "../services/postService";
 // import { Link } from 'react-router-dom'
 import PostCards from "../components/PostCards";
 
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
@@ -20,12 +21,16 @@ export default function Home() {
   }, []);
 
   return (
-<div className="flex gap-4">
-  {posts &&
-    posts.length > 0 &&
-    posts.map((elem) => {
-      return <PostCards key={elem._id} posts={elem} />;
-    })}
+<div className="flex flex-wrap justify-center gap-4 mx-4">
+  {posts && posts.length > 0 && posts.map((elem) => {
+    return (
+      <article key={elem._id} className="bg-white rounded-lg p-6 w-full lg:w-1/2 xl:w-1/3 mx-4 my-4">
+        <PostCards posts={elem} />
+      </article>
+    );
+  })}
 </div>
+
+
   );
 }
