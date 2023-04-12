@@ -52,7 +52,7 @@ export default function NewDress() {
       if (dressNew && dressNew._id) {
         setImageUrl("");
         setError("");
-        navigate('/');
+        navigate(`/`);
         setNewDress(initialState);
       } else {
       }
