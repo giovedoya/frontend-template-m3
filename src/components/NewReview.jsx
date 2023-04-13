@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import reviewService from '../services/reviewService';
-
+import { useAuth } from "../hooks/useAuth";
 
 export default function NewReview() {
   const initialState = {
@@ -12,6 +12,7 @@ export default function NewReview() {
   const [newReview, setNewReview] = useState(initialState);
   const [error, setError] = useState('');
   // const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
@@ -21,8 +22,11 @@ export default function NewReview() {
         [e.target.name]: e.target.value,
       };
     });
+    
   };
-
+  if (!user) {
+    return null;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +58,7 @@ export default function NewReview() {
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
           {error && <p className="text-red-500 mb-4">Something went wrong. Couldn't find your review</p>}
           <div className="mb-4">
+            
             <label className="block text-gray-700 font-bold mb-2" htmlFor="rating">
               Rating
             </label>      
