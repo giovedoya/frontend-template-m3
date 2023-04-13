@@ -37,7 +37,7 @@ export default function Post() {
       <div className="flex-1">
         <p className="text-gray-700">Organizing a wedding is something magical, really special. We want to help you make the most of this unique and unrepeatable moment with the best ideas and the most useful advice. Discover in our articles all the inspiration you are looking for for your big day.</p>
       </div>
-      <SearchPost handleSearchValue={handleSearch} />
+      <SearchPost handleSearchValuePost={handleSearch} />
     </div>
   </div>
   <div className="container mx-auto py-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import postService from "../services/postService";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function EditPost() {
   const { postId } = useParams();
@@ -9,7 +11,7 @@ export default function EditPost() {
   const [isUploading, setIsUploading] = useState(false); 
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
+  const [content, setContent] = useState(post.content);
  
   const getPost = async () => {
     try {
@@ -58,7 +60,15 @@ export default function EditPost() {
       });
   };
 
-
+  const handleContentChange = (value) => {
+    setPost((prev) => {
+      return {
+        ...prev,
+        content: value,
+      };
+    });
+    setContent(value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,6 +115,8 @@ export default function EditPost() {
           required
           className="w-full border border-gray-300 p-2 rounded"
         />
+        <ReactQuill value={content} onChange={handleContentChange} />
+      <button onClick={handleSubmit}>Submit</button>
       </div>
       <div className="flex flex-col space-y-2">
         <label htmlFor="author" className="block mb-1 font-bold text-gray-700">
