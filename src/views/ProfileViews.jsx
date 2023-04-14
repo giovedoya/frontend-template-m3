@@ -94,7 +94,7 @@ export default function ProfileViews() {
                 <div className="flex flex-col justify-between">
                   <div>
                     <h3 className="text-xl font-bold mb-4">{dress.designer}</h3>
-                    <p className="mb-4">{dress.description}</p>
+                    <p className="mb-4">{dress.description.substring(0, 100)}...</p>
                   </div>
                   <div className="flex justify-end">
                     <button className="px-4 py-2  text-black rounded-lg shadow-md hover:bg-blue-700 mr-2">
