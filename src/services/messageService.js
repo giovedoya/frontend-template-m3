@@ -20,8 +20,8 @@ class DressService {
   }
 
 
-  createMessage(body) {
-    return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err))
+  createMessage(id, body) {
+    return this.api.post(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
 }
