@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import messageService from "../services/messageService";
-// import { useParams } from "react-router-dom";
-
 import { useAuth } from "../hooks/useAuth";
 
 export default function NewMessage(props) {
-  const {dressOwner} = props;
+  const { dressOwner } = props;
   const initialState = {
     subject: "",
     message: "",
     phone: "",
   };
-  // const { dressId } = useParams();
   const [newMessage, setNewMessage] = useState(initialState);
   const [error, setError] = useState("");
   const { user } = useAuth();
@@ -24,10 +21,6 @@ export default function NewMessage(props) {
       };
     });
   };
-
-  if (!user) {
-    return null;
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +42,11 @@ export default function NewMessage(props) {
     }
   };
 
+  // Validar si el usuario es el propietario del vestido
+  if (user && user._id === dressOwner) {
+    return null;
+  }
+
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md mx-auto max-w-md p-4">
       <h2>Contact Seller</h2>
@@ -58,7 +56,7 @@ export default function NewMessage(props) {
         )}
         <div>
           <label htmlFor="subject" className="font-semibold mb-1 block">
-          I'm interested
+            I'm interested
           </label>
           <input
             type="text"

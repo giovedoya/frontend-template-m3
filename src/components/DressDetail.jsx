@@ -116,11 +116,13 @@ export default function DressDetail() {
 
   return (
     <div className="container mx-auto py-6">
-    {dress !== null ? (
+    {dress !== null ? ( 
+      
       <div className="flex flex-wrap mb-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Designer {dress.designer}</h1>
         <img className="rounded-lg w-full sm:w-1/2 mb-4 sm:mb-0 sm:mr-4" src={dress.image} alt={dress.title} />
         <div className="flex flex-col justify-between w-full sm:w-1/2">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">{dress.designer}</h1>
+          
           <div className="mb-6">
             <h2 className="text-lg font-bold text-gray-800 mb-4">The Dress</h2>
             <p>{dress.description}</p>
@@ -133,7 +135,7 @@ export default function DressDetail() {
               <li className="mb-2">Color: {dress.color}</li>
               <li className="mb-2">Size: {dress.size}</li>
               <li className="mb-2">Length: {dress.long}</li>
-              <li className="mb-2">Seller: {dress.name}</li>
+              <li className="mb-2">Seller: {dress.seller.username}</li>
               <li className="mb-2">Price: €{dress.price}</li>
               <li className="mb-2">Location: {dress.location}</li>
             </ul>

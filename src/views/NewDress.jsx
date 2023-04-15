@@ -73,7 +73,7 @@ export default function NewDress() {
         {error && <p>Something went wrong. Couldn't find your dress</p>}
         <div className="flex flex-col space-y-2">
           <label htmlFor="name" className="font-semibold">
-            Dress Name
+            Your Name
           </label>
           <input
             type="text"
