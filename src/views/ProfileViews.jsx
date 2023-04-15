@@ -44,9 +44,6 @@ export default function ProfileViews() {
             <div className="flex flex-col space-y-4">
               <p className="text-gray-500">Username: {user.username}</p>
               <p className="text-gray-500">Email: {user.email}</p>
-              {/* <button className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400">
-                Edit Profile
-              </button> */}
             </div>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-6">
@@ -60,6 +57,20 @@ export default function ProfileViews() {
                 className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400"
               >
                 Create a new dress
+              </Link>
+            </div>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-2xl font-bold mb-4">Look at your messages</h2>
+            <div className="flex flex-col space-y-4">
+              <p className="text-gray-500">
+              Here you can see all the messages of interested people.
+              </p>
+              <Link
+                to={`/message/messages`}
+                className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-400"
+              >
+                Check your messages
               </Link>
             </div>
           </div>

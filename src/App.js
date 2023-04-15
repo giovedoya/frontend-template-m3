@@ -18,7 +18,8 @@ import NewPost from './views/NewPost';
 import EditPost from './views/EditPost';
 import ProfileViews from './views/ProfileViews';
 import Footer from './components/Footer';
-import DressUser from './views/DressUser';
+import UserMessages from './views/UserMessages'
+
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/post/:postId/edit" element={<IsPrivate><EditPost /></IsPrivate>} />
         <Route path="/profile" element={<IsPrivate><ProfileViews /></IsPrivate>}  />
-        <Route path="/profile/dresses" element={<IsPrivate><DressUser /></IsPrivate>}  />
+        <Route path="/message/messages" element={<IsPrivate><UserMessages /></IsPrivate>}  />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/error" element={<ErrorPage />} />

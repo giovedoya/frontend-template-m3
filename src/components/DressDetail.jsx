@@ -139,7 +139,7 @@ export default function DressDetail() {
             </ul>
           </div>
           <div className="mb-6 flex justify-between items-center"> 
-            <NewMessage />
+            <NewMessage dressOwner={dress.seller._id}/>
             <NewReview />
           </div>
         </div>

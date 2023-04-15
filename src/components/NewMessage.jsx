@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import messageService from "../services/messageService";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import { useAuth } from "../hooks/useAuth";
 
-export default function NewMessage() {
+export default function NewMessage(props) {
+  const {dressOwner} = props;
   const initialState = {
     subject: "",
     message: "",
     phone: "",
   };
-  const { dressId } = useParams();
+  // const { dressId } = useParams();
   const [newMessage, setNewMessage] = useState(initialState);
   const [error, setError] = useState("");
   const { user } = useAuth();
@@ -31,9 +32,9 @@ export default function NewMessage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const messageNew = await messageService.createMessage(dressId, {
+      const messageNew = await messageService.createMessage(dressOwner, {
         ...newMessage,
-        dressId: dressId,
+        dressId: dressOwner,
       });
 
       if (messageNew && messageNew._id) {

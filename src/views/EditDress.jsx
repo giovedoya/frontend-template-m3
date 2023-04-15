@@ -4,7 +4,7 @@ import dressService from "../services/dressService";
 
 export default function EditDress() {
   const { dressId } = useParams();
-  const [dress, setDress] = useState({ });
+  const [dress, setDress] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState(false);
@@ -93,12 +93,12 @@ export default function EditDress() {
   return (
     <div className="max-w-2xl mx-auto my-8">
       <h2 className="text-2xl font-bold mb-4">Enter the dress you want to sell</h2>
-      <form
+      {error && <p>Something went wrong. Couldn't find your dress</p>}
+      {dress && <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"
         className="space-y-4"
       >
-        {error && <p>Something went wrong. Couldn't find your dress</p>}
         <div className="flex flex-col space-y-2">
           <label htmlFor="name" className="font-semibold">
             Dress Name
@@ -300,7 +300,7 @@ export default function EditDress() {
 
           </button>
         </div>
-      </form>
+      </form>}
     </div>
   );
 }

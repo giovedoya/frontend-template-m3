@@ -19,10 +19,21 @@ class DressService {
     return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));
   }
 
+  getMessage(id) {
+    return this.api.get(`/${id}`).then(({ data }) => data).catch(err => console.error(err))
+  }
 
   createMessage(id, body) {
     return this.api.post(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
+
+  deletedMessage(id) {
+    return this.api.delete(`messages/${id}`).then(({ data }) => data).catch(err => console.error(err))
+  }
+
+  getMessagesOfUserInSession() {
+    return this.api.get("/messages").then(({ data }) => data).catch(err => console.error(err));
+  } 
 
 }
 

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import postService from "../services/postService";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css';
 
 export default function EditPost() {
   const { postId } = useParams();
-  const [post, setPost] = useState({ });
+  const [post, setPost] = useState(null);
   const [imageUrl, setImageUrl] = useState(""); 
   const [isUploading, setIsUploading] = useState(false); 
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const [content, setContent] = useState(post.content);
+  // const [content, setContent] = useState(post.content);
  
   const getPost = async () => {
     try {
@@ -19,9 +19,9 @@ export default function EditPost() {
       setPost({
         ...response,
         title: response.title || '',
-        neckline: response.author || '',
-        court: response.content || '',
-        long: response.image || '',        
+        author: response.author || '',
+        content: response.content || '',
+        image: response.imageUrl || '',        
       });
       setError(false);
     } catch (error) {
@@ -60,15 +60,15 @@ export default function EditPost() {
       });
   };
 
-  const handleContentChange = (value) => {
-    setPost((prev) => {
-      return {
-        ...prev,
-        content: value,
-      };
-    });
-    setContent(value);
-  };
+  // const handleContentChange = (value) => {
+  //   setPost((prev) => {
+  //     return {
+  //       ...prev,
+  //       content: value,
+  //     };
+  //   });
+  //   setContent(value);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,16 +92,17 @@ export default function EditPost() {
 <section className="container mx-auto px-4 py-8 flex justify-center">
   <div className="w-full max-w-2xl">
     <h2 className="text-2xl font-bold mb-4 text-center">Edit post</h2>
-    <form
-      onSubmit={handleSubmit}
-      encType="multipart/form-data"
-      className="space-y-4"
-    >
-      {error && (
+    {error && (
         <p className="text-red-500">
           Something went wrong. Couldn't find your post
         </p>
       )}
+   {post &&  <form
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+      className="space-y-4"
+    >
+      
       <div className="flex flex-col space-y-2">
         <label htmlFor="title" className="block mb-1 font-bold text-gray-700">
           Post title
@@ -109,14 +110,13 @@ export default function EditPost() {
         <input
           type="text"
           name="title"
-          id="title"
           value={post.title}
           onChange={handleChange}
           required
           className="w-full border border-gray-300 p-2 rounded"
         />
-        <ReactQuill value={content} onChange={handleContentChange} />
-      <button onClick={handleSubmit}>Submit</button>
+        {/* <ReactQuill value={content} onChange={handleContentChange} /> */}
+      <button onSubmit={handleSubmit}>Submit</button>
       </div>
       <div className="flex flex-col space-y-2">
         <label htmlFor="author" className="block mb-1 font-bold text-gray-700">
@@ -125,7 +125,6 @@ export default function EditPost() {
         <input
           type="text"
           name="author"
-          id="author"
           value={post.author}
           onChange={handleChange}
           required
@@ -139,7 +138,7 @@ export default function EditPost() {
         <input
           type="file"
           name="image"
-          id="image"
+          value={post.image}
           onChange={(e) => handleFileUpload(e)}
           className="w-full border border-gray-300 p-2 rounded"
         />
@@ -151,7 +150,6 @@ export default function EditPost() {
         <textarea
           type="text"
           name="content"
-          id="content"
           value={post.content}
           onChange={handleChange}
           required
@@ -168,7 +166,7 @@ export default function EditPost() {
           {isUploading ? 'Loading...' : 'Save changes'}
         </button>
       </div>
-    </form>
+    </form>}
   </div>
 </section>
 
