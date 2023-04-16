@@ -28,7 +28,7 @@ class DressService {
   }
 
   deletedMessage(id) {
-    return this.api.delete(`messages/${id}`).then(({ data }) => data).catch(err => console.error(err))
+    return this.api.delete(`/${id}`).then(({ data }) => data).catch(err => console.error(err))
   }
 
   getMessagesOfUserInSession() {

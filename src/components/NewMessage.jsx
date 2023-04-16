@@ -42,7 +42,6 @@ export default function NewMessage(props) {
     }
   };
 
-  // Validar si el usuario es el propietario del vestido
   if (user && user._id === dressOwner) {
     return null;
   }
