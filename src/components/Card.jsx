@@ -13,7 +13,6 @@ export default function Card(props) {
     <h2 className="text-lg font-bold mb-2">
       <Link to={`/dress/${dress._id}`} className="hover:text-gray-700">{dress.designer}</Link>
     </h2>
-    <h3 className="text-md font-semibold mb-2">{dress.long}</h3>
     <h3 className="text-md font-medium mb-2">€ {dress.price}</h3>
     <h3 className="text-md font-medium">Size: {dress.size}</h3>
   </div>

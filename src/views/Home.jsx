@@ -28,8 +28,8 @@ export default function Home() {
   return (
     <div>
   <LandingPage />
-  <header className="flex items-center justify-between py-4 px-6 bg-gray-100">
-    <div className="w-full flex justify-center">
+  <header className="flex items-center justify-between py-4 px-6 bg-gray-800">
+    <div className="w-full flex justify-center bg-gray-800">
       <SearchDress handleSearchValue={handleSearch} />
     </div>
   </header>
