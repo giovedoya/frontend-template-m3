@@ -58,8 +58,9 @@ export default function ProfileViews() {
               >           
                 <div className="flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-bold mb-4">{message.subject}</h3>
-                    <p className="mb-4">{message.message}...</p>
+                    <h3 className="text-xl font-bold mb-4">Who I am: {message.subject}</h3>
+                    <p className="mb-4">Message: {message.message}</p>
+                    <p className="mb-4">Contact me... {message.phone}</p>
                   </div>
                   <div className="flex justify-end">                    
                     <button

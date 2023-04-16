@@ -48,54 +48,59 @@ export default function NewMessage(props) {
   }
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md mx-auto max-w-md p-4">
-      <h2>Contact Seller</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-        {error && (
-          <p className="text-red-500">{`Something went wrong. Couldn't find your message`}</p>
-        )}
-        <div>
-          <label htmlFor="subject" className="font-semibold mb-1 block">
-            I'm interested
-          </label>
-          <input
-            type="text"
-            name="subject"
-            value={newMessage.subject}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <div>
-          <label htmlFor="message" className="font-semibold mb-1 block">
-            Message
-          </label>
-          <textarea
-            name="message"
-            value={newMessage.message}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <div>
-          <label htmlFor="phone" className="font-semibold mb-1 block">
-            Phone
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            value={newMessage.phone}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Submit
-        </button>
-      </form>
+    <div className="w-full">
+  <h2>If you are interested in this dress, please send me a message</h2>
+  
+  <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+    {error && (
+      <p className="text-red-500">{`Something went wrong. Couldn't find your message`}</p>
+    )}
+    <div>
+      <label htmlFor="subject" className="font-semibold mb-1 block">
+        I'm...
+      </label>
+      <input
+        type="text"
+        name="subject"
+        value={newMessage.subject}
+        onChange={handleChange}
+        placeholder="Your name..."
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
     </div>
+    <div>
+      <label htmlFor="message" className="font-semibold mb-1 block">
+        Message
+      </label>
+      <textarea
+        name="message"
+        value={newMessage.message}
+        onChange={handleChange}
+        placeholder="Start your message..."
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+    <div>
+      <label htmlFor="phone" className="font-semibold mb-1 block">
+        Phone
+      </label>
+      <input
+        type="tel"
+        name="phone"
+        value={newMessage.phone}
+        onChange={handleChange}
+        placeholder="Your phone..."
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+    <button
+      type="submit"
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
   );
 }

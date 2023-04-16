@@ -6,6 +6,7 @@ export default function EditDress() {
   const { dressId } = useParams();
   const [dress, setDress] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [ imagePreview, setImagePreview] = useState(null)
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function EditDress() {
         location: response.location || '',
         image: response.image || '',
       });
+      setImagePreview(response.image)
       setError(false);
     } catch (error) {
       console.error(error);
@@ -51,8 +53,17 @@ export default function EditDress() {
   
   const handleFileUpload = (e) => {
     setIsUploading(true);
+    const file = e.target.files[0];
+    
+    // Update the image preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(file);
+    
     const uploadData = new FormData();
-    uploadData.append("imageUrl", e.target.files[0]);     
+    uploadData.append("imageUrl", file);     
     dressService
       .uploadImage(uploadData)
       .then(response => {
@@ -281,6 +292,11 @@ export default function EditDress() {
             name="image"
             onChange={(e) => handleFileUpload(e)}
           />
+          {imagePreview && (
+            <div className="my-4">
+              <img src={imagePreview} alt="Preview" className="w-full h-auto" />
+            </div>
+          )}
           <label>Description</label>
           <input
             type="text"
