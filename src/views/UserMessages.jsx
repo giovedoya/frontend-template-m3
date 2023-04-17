@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import messageService from "../services/messageService";
 import { FaTrash } from "react-icons/fa";
+import { FiMail } from 'react-icons/fi';
 
 export default function ProfileViews() {
   const { user } = useAuth();
@@ -39,51 +40,34 @@ export default function ProfileViews() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <h3 className="text-2xl font-semibold mb-8 text-center">
+    <div className="bg-gray-100 min-h-screen rounded-lg">
+      <div className="pt-10">
+        <h3 className="text-2xl font-semibold mb-4 text-center">
           Someone is interested in your dress
         </h3>
+      </div>
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        {messages && messages.length === 0 && (
+          <p className="text-center">No messages</p>
+        )}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {messages && messages.length === 0 && (
-            <p className="text-gray-500 text-center">
-              You have no new messages.
-            </p>
-          )}
           {messages &&
-            messages.length > 0 &&
             messages.map((message) => (
               <div
                 key={message._id}
-                className="bg-white rounded-lg shadow-lg p-6"
+                className="bg-white mb-4 shadow-md border border-gray-200 rounded hover:bg-gray-100"
               >
-                <div className="grid grid-cols-2 gap-8">
-                  <div>
-                    <p className="text-gray-700 font-medium mb-2">Subject:</p>
-                    <p className="text-gray-900 mb-4">{message.subject}</p>
-                    <p className="text-gray-700 font-medium mb-2">Message:</p>
-                    <p className="text-gray-900 mb-4">{message.message}</p>
-                    <p className="text-gray-900 mb-4">{message.sender.usermane}</p>
-
-                  </div>
-                  <div className="flex flex-col justify-between">
-                    <div>
-                      <p className="text-gray-700 font-medium mb-2">
-                        Contact me at:
-                      </p>
-                      <p className="text-gray-900 mb-4">{message.phone}</p>
-                    </div>
-                    <div className="text-center">
-                      <button
-                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                        type="button"
-                        onClick={() => handleDelete(message._id)}
-                      >
-                        <FaTrash className="inline-block mr-2" />
-                        Delete
-                      </button>
-                    </div>
-                  </div>
+                <div className="p-4">
+                  <h4 className="text-lg font-medium mb-2">{message.subject}</h4>
+                  <p> <FiMail className="inline-block mr-2"/>{message.message}</p>
+                  <p>Phone: {message.phone}</p>
+                  <p className="text-gray-500 mb-4">{message.body}</p>
+                  <button
+                    className="text-black py-2 px-4 rounded"
+                    onClick={() => handleDelete(message._id)}
+                  >
+                    <FaTrash />
+                  </button>
                 </div>
               </div>
             ))}
