@@ -1,14 +1,19 @@
-import React from 'react'
+import React from "react";
 
-export default function SearchReviews({handleSearchValuePost}) {
+export default function SearchReviews({ handleSearchValuePost }) {
   const handleChange = (e) => {
     handleSearchValuePost(e.target.value);
   };
 
   return (
-    <div >
-      <input type="text" name="search" placeholder="Search posts" className="border border-gray-300 px-4 py-2 rounded-md w-full p-4 flex justify-center items-center" onChange={handleChange} />
+    <div>
+      <input
+        type="text"
+        name="search"
+        placeholder="Search posts"
+        className="border border-gray-300 px-4 py-2 rounded-md w-full p-4 flex justify-center items-center"
+        onChange={handleChange}
+      />
     </div>
   );
 }
-

@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './views/Home';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
 import Signup from './views/auth/Signup';
@@ -19,13 +19,15 @@ import EditPost from './views/EditPost';
 import ProfileViews from './views/ProfileViews';
 import Footer from './components/Footer';
 import UserMessages from './views/UserMessages'
+import Navbar2 from './components/Navbar2';
 
 
 function App() {
   return (
     <div className="App">
       <Toaster/>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Navbar2 />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<Post />} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import dressService from "../services/dressService";
 
@@ -20,6 +20,7 @@ export default function NewDress() {
   const [newDress, setNewDress] = useState(initialState);
   const [error, setError] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [dressCreated, setDressCreated] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -52,7 +53,7 @@ export default function NewDress() {
       if (dressNew && dressNew._id) {
         setImageUrl("");
         setError("");
-        navigate(`/`);
+        setDressCreated(true);
         setNewDress(initialState);
       } else {
       }
@@ -62,9 +63,18 @@ export default function NewDress() {
     }
   };
 
+  useEffect(() => {
+    if (dressCreated) {
+      navigate(`/profile`);
+    }
+    // eslint-disable-next-line
+  }, [dressCreated]);
+
   return (
     <div className="max-w-2xl mx-auto my-8">
-      <h2 className="text-2xl font-bold mb-4">Enter the dress you want to sell</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        Enter the dress you want to sell
+      </h2>
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"

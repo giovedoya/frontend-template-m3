@@ -42,27 +42,28 @@ export default function NewMessage(props) {
     }
   };
 
-  // Validar si el usuario es el propietario del vestido
   if (user && user._id === dressOwner) {
     return null;
   }
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md mx-auto max-w-md p-4">
-      <h2>Contact Seller</h2>
+    <div className="w-full">
+      <h2>If you are interested in this dress, please send me a message</h2>
+
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         {error && (
           <p className="text-red-500">{`Something went wrong. Couldn't find your message`}</p>
         )}
         <div>
           <label htmlFor="subject" className="font-semibold mb-1 block">
-            I'm interested
+            I'm...
           </label>
           <input
             type="text"
             name="subject"
             value={newMessage.subject}
             onChange={handleChange}
+            placeholder="Your name..."
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -74,6 +75,7 @@ export default function NewMessage(props) {
             name="message"
             value={newMessage.message}
             onChange={handleChange}
+            placeholder="Start your message..."
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -86,6 +88,7 @@ export default function NewMessage(props) {
             name="phone"
             value={newMessage.phone}
             onChange={handleChange}
+            placeholder="Your phone..."
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
