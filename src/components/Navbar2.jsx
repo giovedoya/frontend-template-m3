@@ -2,12 +2,12 @@ import { Fragment, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon,  XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../assets/logo.png";
-import { FaRegUserCircle } from "react-icons/fa"
+import { FaRegUserCircle } from "react-icons/fa";
 
 const navigation = [
-  { name: "Home", href: "/", current: true }, 
+  { name: "Home", href: "/", current: true },
   { name: "Post", href: "/post", current: false },
 ];
 
@@ -17,7 +17,6 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
- 
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -26,8 +25,6 @@ export default function Navbar() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -72,12 +69,11 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <FaRegUserCircle className="h-8 w-8 rounded-full" /> 
+                      <FaRegUserCircle className="h-8 w-8 rounded-full" />
                     </Menu.Button>
                   </div>
                   <Transition

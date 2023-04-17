@@ -189,17 +189,17 @@ export default function DressDetail() {
                   </div>
                 </div>
                 {user && user._id === dress.seller._id ? null : (
-  <>
-    <div className="font-bold text-center">
-      Seller:{" "}
-      {dress.seller.username.charAt(0).toUpperCase() +
-        dress.seller.username.slice(1)}
-    </div>
-    <div className="font-bold text-center">
-      Price: € {dress.price}
-    </div>
-  </>
-)}
+                  <>
+                    <div className="font-bold text-center">
+                      Seller:{" "}
+                      {dress.seller.username.charAt(0).toUpperCase() +
+                        dress.seller.username.slice(1)}
+                    </div>
+                    <div className="font-bold text-center">
+                      Price: € {dress.price}
+                    </div>
+                  </>
+                )}
 
                 <div className="mb-6">
                   <div className="bg-white p-4 rounded shadow-lg md:w-3/4 lg:w-3/4 mx-auto">
@@ -223,9 +223,7 @@ export default function DressDetail() {
                   </div>
                 </div>
               </div>
-              
             </div>
-            
           ) : null}
           {error ? <p className="text-red-500">{error}</p> : null}
           <RelatedDreses />
@@ -237,23 +235,22 @@ export default function DressDetail() {
                 key={review._id}
                 className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-1 gap-4 md:w-3/4 mx-auto mb-1"
               >
-                
                 <div className="flex flex-col justify-between">
                   <div className="">
                     <div className="space-y-2 p-4 rounded-lg shadow-lg w-full">
                       <div className="font-bold">{review.rating}</div>
-                      <p>By {review.buyerId.username.charAt(0).toUpperCase() + review.buyerId.username.slice(1)}</p>
+                      <p>
+                        By{" "}
+                        {review.buyerId.username.charAt(0).toUpperCase() +
+                          review.buyerId.username.slice(1)}
+                      </p>
                       <p className="mb-4">{review.comment}</p>
                     </div>
                   </div>
-                  {/* <div>
-                    <p>By {review.buyerId.username}</p>
-                  </div> */}
                 </div>
               </div>
             ))}
         </div>
-        
       </div>
     </div>
   );

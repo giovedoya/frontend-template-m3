@@ -11,7 +11,6 @@ export default function NewReview() {
   const { dressId } = useParams();
   const [newReview, setNewReview] = useState(initialState);
   const [error, setError] = useState("");
-  // const navigate = useNavigate();
   const { user } = useAuth();
 
   const handleChange = (e) => {
@@ -47,7 +46,10 @@ export default function NewReview() {
 
   return (
     <div className="bg-white rounded-lg w-full">
-      <h2 className="mb-4">If you liked the dress and you want to say something nice, do not hesitate to do so</h2>
+      <h2 className="mb-4">
+        If you liked the dress and you want to say something nice, do not
+        hesitate to do so
+      </h2>
       <form onSubmit={handleSubmit} className="w-full">
         {error && (
           <p className="text-red-500">{`Something went wrong. Couldn't find your review`}</p>

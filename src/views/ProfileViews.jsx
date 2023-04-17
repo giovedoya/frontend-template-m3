@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import profileService from "../services/profileService";
 import dressService from "../services/dressService";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import PersonalProfile from "../components/PersonalProfile";
 
 export default function ProfileViews() {
   const { user } = useAuth();
@@ -37,15 +38,9 @@ export default function ProfileViews() {
 
   return (
     <div className="bg-gray-100 min-h-screen">
+      <PersonalProfile />
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold mb-4">Account Information</h2>
-            <div className="flex flex-col space-y-4">
-              <p className="text-gray-500">Username: {user.username}</p>
-              <p className="text-gray-500">Email: {user.email}</p>
-            </div>
-          </div>
           <div className="bg-white rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4">Create a New Dress</h2>
             <div className="flex flex-col space-y-4">
@@ -64,7 +59,7 @@ export default function ProfileViews() {
             <h2 className="text-2xl font-bold mb-4">Look at your messages</h2>
             <div className="flex flex-col space-y-4">
               <p className="text-gray-500">
-              Here you can see all the messages of interested people.
+                Here you can see all the messages of interested people.
               </p>
               <Link
                 to={`/message/messages`}
@@ -105,7 +100,9 @@ export default function ProfileViews() {
                 <div className="flex flex-col justify-between">
                   <div>
                     <h3 className="text-xl font-bold mb-4">{dress.designer}</h3>
-                    <p className="mb-4">{dress.description.substring(0, 100)}...</p>
+                    <p className="mb-4">
+                      {dress.description.substring(0, 100)}...
+                    </p>
                   </div>
                   <div className="flex justify-end">
                     <button className="px-4 py-2  text-black rounded-lg shadow-md hover:bg-blue-700 mr-2">

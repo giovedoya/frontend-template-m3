@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import messageService from "../services/messageService";
 import { FaTrash } from "react-icons/fa";
-import { FiMail } from 'react-icons/fi';
+import { FiMail } from "react-icons/fi";
 
 export default function ProfileViews() {
   const { user } = useAuth();
@@ -58,8 +58,14 @@ export default function ProfileViews() {
                 className="bg-white mb-4 shadow-md border border-gray-200 rounded hover:bg-gray-100"
               >
                 <div className="p-4">
-                  <h4 className="text-lg font-medium mb-2">{message.subject}</h4>
-                  <p> <FiMail className="inline-block mr-2"/>{message.message}</p>
+                  <h4 className="text-lg font-medium mb-2">
+                    {message.subject}
+                  </h4>
+                  <p>
+                    {" "}
+                    <FiMail className="inline-block mr-2" />
+                    {message.message}
+                  </p>
                   <p>Phone: {message.phone}</p>
                   <p className="text-gray-500 mb-4">{message.body}</p>
                   <button

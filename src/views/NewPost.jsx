@@ -107,7 +107,7 @@ export default function NewPost() {
               id="image"
               onChange={(e) => handleFileUpload(e)}
               className="w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-            />            
+            />
           </div>
           <div className="flex flex-col space-y-2">
             <label htmlFor="content" className="font-bold text-gray-700">

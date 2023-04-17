@@ -27,7 +27,9 @@ export default function RelatedDreses() {
 
   return (
     <div className="mt-12">
-      <h2 className="text-xl font-bold mb-4">Maybe these dresses also interest you</h2>
+      <h2 className="text-xl font-bold mb-4">
+        Maybe these dresses also interest you
+      </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {randomDresses.map((dress) => (
           <Link to={`/dress/${dress._id}`} key={dress._id}>

@@ -27,33 +27,37 @@ export default function Home() {
 
   return (
     <div>
-  <LandingPage />
-  <header className="flex items-center justify-between py-4 px-6 bg-gray-800">
-    <div className="w-full flex justify-center bg-gray-800">
-      <SearchDress handleSearchValue={handleSearch} />
+      <LandingPage />
+      <header className="flex items-center justify-between py-4 px-6 bg-gray-800">
+        <div className="w-full flex justify-center bg-gray-800">
+          <SearchDress handleSearchValue={handleSearch} />
+        </div>
+      </header>
+      <main className="container mx-auto py-6">
+        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-5">
+          {dresses
+            .filter(
+              (elem) =>
+                elem.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                elem.description
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase()) ||
+                elem.neckline
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase()) ||
+                elem.court.toLowerCase().includes(searchValue.toLowerCase()) ||
+                elem.long.toLowerCase().includes(searchValue.toLowerCase()) ||
+                elem.color.toLowerCase().includes(searchValue.toLowerCase()) ||
+                elem.designer
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase()) ||
+                elem.location.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((elem) => (
+              <Card key={elem._id} dress={elem} />
+            ))}
+        </div>
+      </main>
     </div>
-  </header>
-  <main className="container mx-auto py-6">
-    <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-5">
-      {dresses
-        .filter(
-          (elem) =>
-            elem.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.description.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.neckline.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.court.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.long.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.color.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.designer.toLowerCase().includes(searchValue.toLowerCase()) ||
-            elem.location.toLowerCase().includes(searchValue.toLowerCase())
-        )
-        .map((elem) => (
-          <Card key={elem._id} dress={elem} />
-        ))}
-    </div>
-  </main>
-</div>
-
-  
-)}
-
+  );
+}
