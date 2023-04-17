@@ -1,11 +1,10 @@
-# Project's name
+# WeddSell
 
 ## Description
 
-This application is called XXX. It is used for ...
-
+This app is called WeddSell. It is used so that brides who have already been married can sell their wedding dress and recover part of the money they spent on the wedding.
 > Add a picture (logo, design, actual screen, gif, etc, whichever you prefer.)
-![](picture.png)
+![](WeddSell.png)
 
 ---
 ## Instructions
@@ -30,18 +29,27 @@ npm run start
 - User can sign up and create a new account
 - User can login
 - User can log out
+- User can upload a dress
+- User can edit and delete a dress
+- User can write reviews
+- Admin can upload a dress
+- Admin can edit and delete a dress
+- Admin can create a post
+- Admin can edit and delete a post
 
 ### Backlog
 
-- User can ...
+- User can send messages to other users
+- User can delete message
+- Users can upload photos locally
 
 ---
 
 ## Useful links
 
 - [Presentation slides]()
-- [Backend repository]()
-- [Backend deploy]()
-- [Deployed app]()
+- [Backend repository](https://github.com/giovedoya/backend-template-m3)
+- [Backend deploy](https://weddsell.fly.dev/)
+- [Deployed app](https://weddsell.netlify.app/)
 
 
